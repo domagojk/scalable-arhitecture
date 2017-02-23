@@ -42,6 +42,7 @@ function Markdown () {
 
     initialState: {
       document: 'No document',
+      isFetching: false,
       error: true
     },
 
@@ -57,16 +58,13 @@ function Markdown () {
     reducers (sources) {
       return [
         sources.isFetching$
-          .do(console.log)
           .reducer(function (state, isFetching) {
-            if (isFetching) {
-              state.document = 'Fetching document...'
-            }
+            state.isFetching = isFetching
             return state
           }),
 
         sources.document$
-          .do(console.log)
+          .mapToLatest(sources.document$)
           .reducer(function (state, res) {
             state.document = res.document
             state.error = res.error
@@ -76,6 +74,8 @@ function Markdown () {
     },
 
     view (props, state) {
+      const markdown = (state.isFetching) ? 'Fetching document...' : state.document
+
       return (
         <div>
           {state.error &&
@@ -84,7 +84,7 @@ function Markdown () {
               <button className='retry-fetch'>Retry</button>
             </div>
           }
-          <ReactMarkdown source={state.document} />
+          <ReactMarkdown source={markdown} />
         </div>
       )
     }
