@@ -1,15 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
+import './style.css'
 import Markdown from '../Markdown'
-import Editor from '../Editor'
+import RepoList from '../RepoList'
 
 function App () {
   return (
-    <div className='container-fluid'>
-      <div>Header</div>
-      <div className='show-grid row'>
-        <div className='col-md-4 col-xs-6'><Markdown /></div>
-        <div className='col-md-4 col-xs-6'><Editor /></div>
+    <div>
+      <div className='repo-list'>
+        <RepoList />
+      </div>
+      <div className='document'>
+        <Markdown />
       </div>
     </div>
   )

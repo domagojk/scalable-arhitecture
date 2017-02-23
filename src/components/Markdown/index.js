@@ -37,7 +37,7 @@ function Markdown () {
       document$: sourceTypes.stream.isRequired,
       isFetching$: sourceTypes.stream.isRequired,
       actionCreators: sourceTypes.object.isRequired,
-      constants: sourceTypes.object.isRequired
+      actionTypes: sourceTypes.object.isRequired
     },
 
     initialState: {
@@ -51,7 +51,7 @@ function Markdown () {
         sources.selectClass('retry-fetch')
           .on('click')
           .mapToLatest(sources.filePath$)
-          .map(sources.actionCreators.fetchDocument)
+          .map(sources.actionCreators.openDocument)
       ]
     },
 

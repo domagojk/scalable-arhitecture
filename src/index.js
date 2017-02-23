@@ -1,21 +1,26 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
 import Rx from 'rxjs/Rx'
 import ReactDOM from 'react-dom'
 import createRecycle from 'recyclejs/react'
 
 import Wrapper from './components/Wrapper'
-import actions from './drivers/actions'
-import store from './drivers/store'
-import documents from './drivers/documents'
+import drivers from './drivers'
+import DocumentFetcher from './tasks/DocumentFetcher'
+import StateAggregator from './tasks/StateAggregator'
 
 // creating recycle instance
 const recycle = createRecycle(React, Rx)
 
 // applying drivers
-recycle.use(actions, store, documents)
+recycle.use(drivers)
 
-// creating recycle components
+// creating root react component
 const WrapperReact = recycle.createReactComponent(Wrapper)
+
+// adding Tasks
+recycle.createComponent(DocumentFetcher)
+recycle.createComponent(StateAggregator)
 
 // rendering root react component
 ReactDOM.render(<WrapperReact />, document.getElementById('root'))

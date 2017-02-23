@@ -1,27 +1,15 @@
-import config from '../config'
+import * as actionTypes from '../constants/ActionTypes'
 
 function documents (recycle, Rx) {
-  // stream of filePath changes in store
-  const filePath$ = recycle.getDriver('store').filePath$
-
   // stream of fetched documents
-  const document$ = new Rx.Subject()
+  const document$ = recycle.action$
+    .filter(a => a.type === actionTypes.DOCUMENT_FETCHED)
+    .map(a => a.res)
 
   // stream signaling when a document is fetching
-  const isFetching$ = Rx.Observable.merge(
-    filePath$.mapTo(true),
-    document$.mapTo(false)
-  )
-
-  // stream with side-effect of ajax request (fetching doc)
-  // dumping its result to document$
-  filePath$
-    .share()
-    .switchMap(path => Rx.Observable.ajax(`${config.url}/${path}`)
-      .map(res => ({ error: false, document: 'fetched doc' }))
-      .catch(err => Rx.Observable.of({ error: err.message, document: '' }))
-    )
-    .subscribe(document$)
+  const isFetching$ = recycle.action$
+    .filter(a => a.type === actionTypes.IS_FETCHING_DOCUMENT)
+    .map(a => a.isFetching)
 
   // feeding components with created streams
   recycle.feedMatchedComponents('document$', document$)

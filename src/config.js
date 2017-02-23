@@ -1,3 +1,4 @@
 export default {
-  url: 'http://localhost:9999'
+  documentEndpoint: path => `https://api.github.com/repos/${path}/contents/README.md?ref=master`,
+  shareDB: 'ws://localhost:8080'
 }
