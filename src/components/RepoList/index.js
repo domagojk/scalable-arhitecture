@@ -5,8 +5,9 @@ function RepoList () {
   return {
     sourceTypes: {
       repos$: sourceTypes.stream.isRequired,
-      actionCreators: sourceTypes.object.isRequired,
-      actionTypes: sourceTypes.object.isRequired
+      addRepoRequests$: sourceTypes.stream.isRequired,
+      requestDocument: sourceTypes.func.isRequired,
+      addRepo: sourceTypes.func.isRequired
     },
 
     initialState: {
@@ -18,14 +19,14 @@ function RepoList () {
       return [
         sources.select('button')
           .on('click')
-          .map(sources.actionCreators.openDocument),
+          .map(sources.requestDocument),
 
         sources.select('input')
           .on('keyPress')
           .filter(e => e.key === 'Enter')
           .mapToLatest(sources.state)
           .map(s => s.newRepoInput)
-          .map(sources.actionCreators.addRepo)
+          .map(sources.addRepo)
       ]
     },
 
@@ -34,6 +35,7 @@ function RepoList () {
         sources.repos$
           .reducer(function (state, repos) {
             state.repos = repos
+            state.newRepoInput = ''
             return state
           }),
 
@@ -44,8 +46,9 @@ function RepoList () {
             return state
           }),
 
-        sources.actions
-          .filterByType(sources.actionTypes.ADD_REPO)
+        sources.select('input')
+          .on('keyPress')
+          .filter(e => e.key === 'Enter')
           .reducer(function (state) {
             state.newRepoInput = ''
             return state

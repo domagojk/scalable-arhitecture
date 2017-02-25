@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom'
 import createRecycle from 'recyclejs/react'
 
 import Wrapper from './components/Wrapper'
-import drivers from './drivers'
 import DocumentFetcher from './tasks/DocumentFetcher'
 import StateAggregator from './tasks/StateAggregator'
+import drivers from './drivers'
 
 // creating recycle instance
 const recycle = createRecycle(React, Rx)

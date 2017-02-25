@@ -5,26 +5,24 @@ function DocumentFetcher () {
     aggregator: true,
 
     sourceTypes: {
-      event$: sourceTypes.stream.isRequired,
-      actionTypes: sourceTypes.object.isRequired
+      openDocumentRequests$: sourceTypes.stream.isRequired,
+      addRepoRequests$: sourceTypes.stream.isRequired
     },
 
     initialState: {
-      filePath: 'recyclejs/recycle',
+      documentPath: '',
       repos: ['codemirror/codemirror', 'recyclejs/recycle', 'bulicmatko/firepack', 'will/fail']
     },
 
     reducers (sources) {
       return [
-        sources.event$
-          .filterByType(sources.actionTypes.OPEN_DOCUMENT)
+        sources.openDocumentRequests$
           .reducer(function (state, event) {
-            state.filePath = event.path
+            state.documentPath = event.path
             return state
           }),
 
-        sources.event$
-          .filterByType(sources.actionTypes.ADD_REPO)
+        sources.addRepoRequests$
           .reducer(function (state, event) {
             state.repos.push(event.repo)
             return state

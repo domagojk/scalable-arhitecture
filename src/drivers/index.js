@@ -1,13 +1,11 @@
-import actions from './actions'
-import aggregate from './aggregate'
-import documents from './documents'
-import config from './config'
-import syncopath from './syncopath'
+import actionCreators from './actionCreators'
+import store from './store'
+import events from './events'
+import eventsSyncopath from './eventsSyncopath'
 
 export default [
-  actions,
-  aggregate,
-  documents,
-  syncopath,
-  config
+  actionCreators,
+  store,
+  // eventsSyncopath,
+  events
 ]

@@ -6,29 +6,27 @@ function DocumentFetcher () {
   return {
     sourceTypes: {
       document$: sourceTypes.stream.isRequired,
-      event$: sourceTypes.stream.isRequired,
-      actionCreators: sourceTypes.object.isRequired,
-      actionTypes: sourceTypes.object.isRequired,
-      getUrl: sourceTypes.object.isRequired
+      openDocumentRequests$: sourceTypes.stream.isRequired,
+      getDocumentEndpoint: sourceTypes.func.isRequired,
+      documentFetched: sourceTypes.func.isRequired,
+      changeDocumentStatus: sourceTypes.func.isRequired
     },
 
     actions (sources) {
       return [
-        sources.event$
-          .filterByType(sources.actionTypes.OPEN_DOCUMENT)
+        sources.openDocumentRequests$
           .map(e => e.path)
           .debounceTime(500)
-          .switchMap(path => Rx.Observable.ajax(sources.getUrl(path))
+          .switchMap(path => Rx.Observable.ajax(sources.getDocumentEndpoint(path))
             .map(res => ({ error: false, document: atob(res.response.content) }))
             .catch(err => Rx.Observable.of({ error: err.message, document: '' }))
           )
-          .map(sources.actionCreators.documentFetched),
+          .map(sources.documentFetched),
 
-        sources.event$
-          .filterByType(sources.actionTypes.OPEN_DOCUMENT)
+        sources.openDocumentRequests$
           .mapTo(true)
           .merge(sources.document$.mapTo(false))
-          .map(sources.actionCreators.isFetchingDocument)
+          .map(sources.changeDocumentStatus)
       ]
     }
   }

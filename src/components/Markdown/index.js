@@ -2,42 +2,13 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { sourceTypes } from 'recyclejs'
 
-/*
-razbijanje statea na posebne streamove
-  - izloiranost
-  - netreba shouldComponentUpdate (u sourceu se gleda)
-    pa ako je 10 komponenti ovismo u streamu, samo je jedna
-    provjera a ne 10
-
-USPOREDBA SA REDUX/REACT
-propsi
-  - REDUX: većina App logic-a
-  - RECYCLE: samo konfiguracijski parametri (nikad app logic)
-sources
-  - REDUX: nema
-  - RECYCLE: svojevrsni props (drugi ulaz) za App logic
-initialState
-  - isto
-actions
-  - REDUX: render (view) -> props -> container dispatcher -> redux
-  - RECYCLE: return actions stream -> driver -> ?
-reducers
-  - REDUX: promjena na setState ako je lokalna, inače propsi
-  - RECYCLE: promjena statea na neki od sourca, lokalni ili vanjski
-view
-  - REDUX: view/logic
-  - RECYCLE: pure view
-
-*/
-
 function Markdown () {
   return {
     sourceTypes: {
-      filePath$: sourceTypes.stream.isRequired,
+      documentPath$: sourceTypes.stream.isRequired,
       document$: sourceTypes.stream.isRequired,
       isFetching$: sourceTypes.stream.isRequired,
-      actionCreators: sourceTypes.object.isRequired,
-      actionTypes: sourceTypes.object.isRequired
+      requestDocument: sourceTypes.func.isRequired
     },
 
     initialState: {
@@ -50,8 +21,8 @@ function Markdown () {
       return [
         sources.selectClass('retry-fetch')
           .on('click')
-          .mapToLatest(sources.filePath$)
-          .map(sources.actionCreators.openDocument)
+          .mapToLatest(sources.documentPath$)
+          .map(sources.requestDocument)
       ]
     },
 

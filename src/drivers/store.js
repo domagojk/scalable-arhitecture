@@ -1,13 +1,8 @@
 function aggregateDriver (recycle, Rx) {
   const store$ = new Rx.Subject()
 
-  const filePath$ = store$.map(s => s.filePath)
-    .distinctUntilChanged()
-
-  const repos$ = store$.map(s => s.repos)
-
-  recycle.feedMatchedComponents('filePath$', filePath$)
-  recycle.feedMatchedComponents('repos$', repos$)
+  recycle.feedMatchedComponents('documentPath$', store$.map(s => s.documentPath).distinctUntilChanged())
+  recycle.feedMatchedComponents('repos$', store$.map(s => s.repos))
 
   recycle.on('sourcesReady', function (c) {
     if (c.get('aggregator')) {
