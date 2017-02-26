@@ -4,9 +4,8 @@ import { sourceTypes } from 'recyclejs'
 function RepoList () {
   return {
     sourceTypes: {
-      repos$: sourceTypes.stream.isRequired,
-      addRepoRequests$: sourceTypes.stream.isRequired,
-      requestDocument: sourceTypes.func.isRequired,
+      store$: sourceTypes.observable.isRequired,
+      requestReadme: sourceTypes.func.isRequired,
       addRepo: sourceTypes.func.isRequired
     },
 
@@ -19,7 +18,7 @@ function RepoList () {
       return [
         sources.select('button')
           .on('click')
-          .map(sources.requestDocument),
+          .map(choosenRepo => sources.requestReadme(choosenRepo)),
 
         sources.select('input')
           .on('keyPress')
@@ -32,7 +31,8 @@ function RepoList () {
 
     reducers (sources) {
       return [
-        sources.repos$
+        sources.store$
+          .map(s => s.repos)
           .reducer(function (state, repos) {
             state.repos = repos
             state.newRepoInput = ''

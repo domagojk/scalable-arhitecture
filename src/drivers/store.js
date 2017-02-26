@@ -1,22 +1,46 @@
-function aggregateDriver (recycle, Rx) {
+function storeDriver (recycle, Rx) {
   const store$ = new Rx.Subject()
+  const state = {}
+  const aggregators = []
 
-  recycle.feedMatchedComponents('documentPath$', store$.map(s => s.documentPath).distinctUntilChanged())
-  recycle.feedMatchedComponents('repos$', store$.map(s => s.repos))
-
-  recycle.on('sourcesReady', function (c) {
-    if (c.get('aggregator')) {
-      setTimeout(() => {
-        c.getStateStream()
-          .map(res => res.state)
-          .startWith(c.get('initialState'))
-          .subscribe(function (state) {
-            store$.next(state)
-            c.replaceState(state)
-          })
-      })
+  recycle.on('componentInit', function (c) {
+    const aggregate = c.get('aggregate')
+    if (typeof aggregate !== 'object') {
+      return
     }
+    Object.keys(aggregate).forEach(key => {
+      if (state[key] !== undefined) {
+        throw new Error(`${key} aggregate is already defined`)
+      }
+      state[key] = aggregate[key]
+    })
+    c.replaceState(aggregate)
+    aggregators.push(c)
   })
+
+  recycle.on('newState', function (c, state) {
+    const aggregate = c.get('aggregate')
+    if (typeof aggregate !== 'object') {
+      return
+    }
+    Object.keys(state).forEach(key => {
+      if (aggregate[key] === undefined) {
+        throw new Error(`Could not calculate state. ${key} is not defined in aggregate.`)
+      }
+    })
+  })
+
+  recycle.on('componentsInitalized', function () {
+    Rx.Observable.merge(...aggregators.map(c => c.getStateStream()))
+      .map(res => res.state)
+      .startWith(state)
+      .scan((acc, curr) => {
+        return Object.assign({}, acc, curr)
+      })
+      .subscribe(store$)
+  })
+
+  recycle.feedMatchedComponents({ store$ })
 }
 
-export default aggregateDriver
+export default storeDriver

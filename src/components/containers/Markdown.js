@@ -5,40 +5,48 @@ import { sourceTypes } from 'recyclejs'
 function Markdown () {
   return {
     sourceTypes: {
-      documentPath$: sourceTypes.stream.isRequired,
-      document$: sourceTypes.stream.isRequired,
-      isFetching$: sourceTypes.stream.isRequired,
-      requestDocument: sourceTypes.func.isRequired
+      store$: sourceTypes.observable.isRequired,
+      requestReadme: sourceTypes.func.isRequired
     },
 
     initialState: {
       document: 'No document',
       isFetching: false,
-      error: true
+      error: false
     },
 
     actions (sources) {
       return [
         sources.selectClass('retry-fetch')
           .on('click')
-          .mapToLatest(sources.documentPath$)
-          .map(sources.requestDocument)
+          .mapToLatest(sources.store$.map(s => s.repoName))
+          .map(sources.requestReadme)
       ]
     },
 
     reducers (sources) {
       return [
-        sources.isFetching$
+        sources.store$
+          .map(s => s.isFetching)
+          .distinctUntilChanged()
           .reducer(function (state, isFetching) {
             state.isFetching = isFetching
             return state
           }),
 
-        sources.document$
-          .mapToLatest(sources.document$)
-          .reducer(function (state, res) {
-            state.document = res.document
-            state.error = res.error
+        sources.store$
+          .map(s => s.readme)
+          .distinctUntilChanged()
+          .reducer(function (state, document) {
+            state.document = document
+            return state
+          }),
+
+        sources.store$
+          .map(s => s.errorFetching)
+          .distinctUntilChanged()
+          .reducer(function (state, error) {
+            state.error = error
             return state
           })
       ]
@@ -49,7 +57,7 @@ function Markdown () {
 
       return (
         <div>
-          {state.error &&
+          {state.error && !state.isFetching &&
             <div>
               <div>Error fetching document: {state.error}</div>
               <button className='retry-fetch'>Retry</button>

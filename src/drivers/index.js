@@ -1,11 +1,12 @@
 import actionCreators from './actionCreators'
+import actionStreams from './actionStreams'
+// import actionStreams from './actionStreams_sync'
+import configFeeder from './configFeeder'
 import store from './store'
-import events from './events'
-import eventsSyncopath from './eventsSyncopath'
 
 export default [
   actionCreators,
-  store,
-  // eventsSyncopath,
-  events
+  configFeeder,
+  actionStreams,
+  store
 ]

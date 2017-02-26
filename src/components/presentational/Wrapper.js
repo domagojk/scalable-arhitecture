@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
-import Markdown from '../Markdown'
-import RepoList from '../RepoList'
+import Markdown from '../containers/Markdown'
+import RepoList from '../containers/RepoList'
 
 function App () {
   return (
