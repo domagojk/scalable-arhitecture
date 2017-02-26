@@ -19,6 +19,7 @@
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.4",
     "recyclejs": "^2.0.0-rc.0",
+    "rxjs": "^5.2.0",
     "sharedb": "^1.0.0-beta.7",
     "syncopath": "^1.0.0",
     "websocket-json-stream": "0.0.3",
