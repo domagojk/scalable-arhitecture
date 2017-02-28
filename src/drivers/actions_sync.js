@@ -2,14 +2,15 @@
 import Syncopath from 'syncopath'
 import config from '../config'
 import * as types from '../constants'
+import * as actionCreators from '../actions'
 
 export default function (recycle, Rx) {
   const action$ = new Rx.Subject()
 
   recycle.feedMatchedComponents({
-    readmeRequest$: action$.filter(a => a.type === types.REQUEST_README),
-    addRepoRequests$: action$.filter(a => a.type === types.ADD_REPO),
-    documentResponse$: action$.filter(a => a.type === types.README_FETCHED)
+    action$,
+    actionCreators,
+    actionTypes: types
   })
 
   const syncopath = Syncopath({

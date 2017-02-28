@@ -6,7 +6,7 @@ function Markdown () {
   return {
     sourceTypes: {
       store$: sourceTypes.observable.isRequired,
-      requestReadme: sourceTypes.func.isRequired
+      actionCreators: sourceTypes.object.isRequired
     },
 
     initialState: {
@@ -20,7 +20,7 @@ function Markdown () {
         sources.selectClass('retry-fetch')
           .on('click')
           .mapToLatest(sources.store$.map(s => s.repoName))
-          .map(sources.requestReadme)
+          .map(sources.actionCreators.requestReadme)
       ]
     },
 

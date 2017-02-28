@@ -1,12 +1,10 @@
-import actionCreators from './actionCreators'
-import actionStreams from './actionStreams'
-// import actionStreams from './actionStreams_sync'
-import configFeeder from './configFeeder'
+import actions from './actions'
+// import actions from './actions_sync'
+import config from './config'
 import store from './store'
 
 export default [
-  actionCreators,
-  configFeeder,
-  actionStreams,
+  config,
+  actions,
   store
 ]

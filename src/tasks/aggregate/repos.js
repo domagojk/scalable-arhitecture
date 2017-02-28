@@ -2,9 +2,8 @@ import { sourceTypes } from 'recyclejs'
 
 export default {
   sourceTypes: {
-    readmeRequest$: sourceTypes.observable.isRequired,
-    documentResponse$: sourceTypes.observable.isRequired,
-    addRepoRequests$: sourceTypes.observable.isRequired
+    action$: sourceTypes.observable.isRequired,
+    actionTypes: sourceTypes.object.isRequired
   },
 
   aggregate: {
@@ -15,19 +14,22 @@ export default {
 
   reducers (sources) {
     return [
-      sources.readmeRequest$
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.REQUEST_README)
         .reducer(function (state, action) {
           state.repoName = action.path
           return state
         }),
 
-      sources.documentResponse$
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.README_FETCHED)
         .reducer(function (state, action) {
           state.readme = action.res.document
           return state
         }),
 
-      sources.addRepoRequests$
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.ADD_REPO)
         .reducer(function (state, event) {
           if (state.repos.indexOf(event.repo) !== -1) {
             return state

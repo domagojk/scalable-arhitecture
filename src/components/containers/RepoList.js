@@ -5,8 +5,7 @@ function RepoList () {
   return {
     sourceTypes: {
       store$: sourceTypes.observable.isRequired,
-      requestReadme: sourceTypes.func.isRequired,
-      addRepo: sourceTypes.func.isRequired
+      actionCreators: sourceTypes.object.isRequired
     },
 
     initialState: {
@@ -18,14 +17,14 @@ function RepoList () {
       return [
         sources.select('button')
           .on('click')
-          .map(choosenRepo => sources.requestReadme(choosenRepo)),
+          .map(sources.actionCreators.requestReadme),
 
         sources.select('input')
           .on('keyPress')
           .filter(e => e.key === 'Enter')
           .mapToLatest(sources.state)
           .map(s => s.newRepoInput)
-          .map(sources.addRepo)
+          .map(sources.actionCreators.addRepo)
       ]
     },
 
