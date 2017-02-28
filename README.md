@@ -30,7 +30,7 @@ scalabilityIndex =  -----------------------------------------------------
 ### Component Reusability
 > If I were to look at the codebase for a large application you or your team were working on and selected a random module, would it be possible for me to easily just drop it into a new page and start using it on its own? [Large Scale JavaScript](https://addyosmani.com/largescalejavascript)
 
-If the answer is yes, a component is probably reusable.
+If the answer is yes, a component is reusable.
 
 ### Component Independence
 But, this doesn't mean it's completely independent.
