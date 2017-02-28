@@ -53,7 +53,7 @@ If a component is truly independent, there should be no difference on wether it'
 
 ### Size of the Domain Logic
 Domain is the world your application lives in.
-It connects all components together and optionaly provides config params so it can behave differently for different enviroments.
+It connects all components together and optionaly provides config params so it can adapt to different enviroments.
 
 This includes: app starting point (`index.js`), config params, constants (`actionTypes`), action object structure (`actionCreators`), etc.
 
