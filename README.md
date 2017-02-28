@@ -1,20 +1,20 @@
 # Markdown Fetcher Challenge
-Application for displaying README.md markdown files for listed repositories.
+Application for displaying *README.md* markdown files for listed repositories.
 
 [Demo](https://domagojk.github.io/recycle-markdown-fetcher)
 
-This repository serves as an example on how [Recycle](https://recycle.js.org) (v2), 
+This repository serves as an example on how [Recycle](https://recycle.js.org) (v2)
 can be used for building large scale apps.
 
 However, the following specification also serves as a challenge.
+
 If you wish to solve the challenge by yourself, feel free to post an issue with your solution featuring the library of your choice.
 
 ## Scalability Index
 The goal is to create a scalabale frontend architecture.
-
 But, in order to do this, we must first define what does it mean for an application to be scalable.
 
-Personally, I'm not aware of any clear way for determening this (if there is one, please let me know).
+Personally, I'm not aware of any clear way for determening application scalability (if there is one, please let me know).
 
 So, I'm now going to define my own. 
 
