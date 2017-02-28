@@ -1,5 +1,7 @@
-# Readme Fetcher
+# Readme Fetcher Challenge
 The app for fetching README.md markdown files for listed repositories.
+
+[Open the app](https://domagojk.github.io/recycle-markdown-fetcher)
 
 ## Specifications
 The main goal of the project is to build a scalable frontend architecture.

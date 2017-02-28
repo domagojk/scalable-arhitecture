@@ -1,15 +1,16 @@
 {
-  "name": "flowdos",
+  "name": "recycle-markdown-fetcher",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://domagojk.github.io/recycle-markdown-fetcher/",
   "devDependencies": {
-    "react-scripts": "0.9.0",
     "eslint": "^3.9.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
     "eslint-plugin-promise": "^3.3.2",
     "eslint-plugin-react": "^6.7.1",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "gh-pages": "^0.12.0",
+    "react-scripts": "0.9.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -29,6 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   }
 }
