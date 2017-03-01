@@ -4,9 +4,9 @@ import Rx from 'rxjs/Rx'
 import ReactDOM from 'react-dom'
 import createRecycle from 'recyclejs/react'
 
-import App from './components/presentational/App'
-import readmeFetcher from './components/tasks/effects'
-import aggregate from './components/tasks/aggregate'
+import Wrapper from './components/view/Wrapper'
+import effects from './components/effects'
+import state from './components/state'
 import actionStream from './drivers/actionStream'
 import storeStream from './drivers/storeStream'
 import configFeeder from './drivers/configFeeder'
@@ -18,11 +18,11 @@ const recycle = createRecycle(React, Rx)
 recycle.use(actionStream, storeStream, configFeeder)
 
 // adding Tasks
-recycle.createComponent(aggregate)
-recycle.createComponent(readmeFetcher)
+recycle.createComponent(state)
+recycle.createComponent(effects)
 
 // creating root react component
-const AppReact = recycle.createReactComponent(App)
+const WrapperReact = recycle.createReactComponent(Wrapper)
 
 // rendering root react component
-ReactDOM.render(<AppReact />, document.getElementById('root'))
+ReactDOM.render(<WrapperReact />, document.getElementById('root'))
