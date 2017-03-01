@@ -85,7 +85,7 @@ The app requirements:
 
 Bonus requirement:
 - (5) the app should work offline AND in sync accross multiple clients using websockets or similar communication protocol
-  (algorithm for making app in sync doesn't have to be perfect or optimised. Proving that it's conceptually possible is enough)
+  (algorithm for making app in sync doesn't have to be perfect or optimised. Proving that it's conceptually possible is sufficient)
 
 ## Proposed Arhitecture
 There are, of course, different ways of structuring application like this.
