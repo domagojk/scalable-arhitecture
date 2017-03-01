@@ -18,7 +18,7 @@ Personally, I'm not aware of any clear way for determening application scalabili
 
 So, I'm now going to define my own. 
 
-It is based on my personal experience and relatively old [article](https://addyosmani.com/largescalejavascript) from Addy Osmany and even older [presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs) of Nicholas Zakas:
+It is based on my personal experience and relatively old [article](https://addyosmani.com/largescalejavascript) from Addy Osmany and even older [presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs) of Nicholas Zakas.
 
 ```
                       c(reusability) * c(independence) * c(testability)
