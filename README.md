@@ -96,3 +96,23 @@ All future components should be placed in one of those categories.
 This repository is a showcase of a solution for described problem,
 created with [Recycle](https://recycle.js.org) (version 2) which is combining React and RxJS.
 
+### Application structure
+
+### Components
+
+#### (A) Markdown
+
+#### (B) RepoList
+
+#### (C) Repositories Aggregate
+
+#### (D) Fetching Aggregate
+
+#### (E) Readme Fetcher
+
+### Domain Logic
+
+#### Config
+#### Drivers
+
+## Bonus: Event Sourcing
