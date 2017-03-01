@@ -20,6 +20,16 @@ So, I'm now going to define my own.
 
 It is based on my personal experience and relatively old [article](https://addyosmani.com/largescalejavascript) from Addy Osmany and even older [presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs) of Nicholas Zakas.
 
+Basically the application should be created as a set of components,
+and the part of the application connecting them together should be as small as possible.
+
+Note that a term "component" (sometimes called "module") indicates an isolated part of the application.
+It's a broader concept than "React component".
+
+I had deliberately chosen the same term, 
+because they could have a parent-child relationship similar to a React hierarchy.
+Also a React component itself is... well - a component, but only for a presentational part of the app.
+
 ```
                       c(reusability) * c(independence) * c(testability)
 scalabilityIndex =  -----------------------------------------------------
@@ -67,9 +77,6 @@ The application must be separated in five parts:
  - **(C)** component for managing repository data (contents of README.md and list of repositories)
  - **(D)** component for fetching status (is README currently fetching and is it in error state)
 - **(E)** component for making side effects (ajax request to github API)
-
-Note that a term "component" indicates an isolated part of the application.
-It's a broader concept than "React component".
 
 The app requirements:
 - (1) both **(A)** and **(B)** must be able to request fetching of a README.md file using the same action structure
