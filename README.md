@@ -60,19 +60,22 @@ This includes: app starting point (`index.js`), config params, constants (`actio
 Good scalabale arhitecture keeps this part as small as possible.
 
 ## Challenge Specifications
-The application must be separated in five parts:
+The application must be separated in five components:
 - **(A)** component for displaying a list of repositories
 - **(B)** component for rendering fetched markdown
 - isolated parts of the app for handling app state:
- - **(C)** managing repository data (contents of README.md and list of repositories)
- - **(D)** managing fetching status (is README currently fetching and is it in error state)
-- **(E)** part of the app for making side effects (ajax request to github API)
+ - **(C)** component for managing repository data (contents of README.md and list of repositories)
+ - **(D)** component for fetching status (is README currently fetching and is it in error state)
+- **(E)** component for making side effects (ajax request to github API)
+
+Note that a term "component" indicates an isolated part of the application.
+It's a broader concept than "React component".
 
 The app requirements:
 - (1) both **(A)** and **(B)** must be able to request fetching of a README.md file using the same action structure
-- (2) each part of the app must be able to be developed in isolation so it is not aware of its enviroment or any other part 
-- (3) if specific part of the app fails, other parts must still be functional
-- (4) each part of the app must be easily testable and reusable
+- (2) each component must be able to be developed in isolation so it is not aware of its enviroment or any other component 
+- (3) if specific component fails, others must still be functional
+- (4) each component must be easily testable and reusable
 
 Bonus requirement:
 - (5) the app should work offline AND in sync accross multiple clients using websockets or similar communication protocol
@@ -82,9 +85,9 @@ Bonus requirement:
 There are, of course, different ways of structuring application like this.
 
 This challenge promotes an architecture composed of:
- - view logic (parts for managing application visual presentation) - **(A)**, **(B)**
- - state managment (parts for managing application state) - **(C)**, **(D)**
- - effects (parts for managing application side effects) - **(E)**
+ - view logic (components for managing application visual presentation) - **(A)**, **(B)**
+ - state managment (components for managing application state) - **(C)**, **(D)**
+ - effects (components for managing application side effects) - **(E)**
  - application specific (domain logic)
 
 All future components should be placed in one of those categories.
