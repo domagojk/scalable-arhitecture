@@ -27,12 +27,12 @@ scalabilityIndex =  -----------------------------------------------------
 
 ```
 
-### Component Reusability
+### c(reusability) - Component Reusability
 > If I were to look at the codebase for a large application you or your team were working on and selected a random module, would it be possible for me to easily just drop it into a new page and start using it on its own? [Large Scale JavaScript](https://addyosmani.com/largescalejavascript)
 
 If the answer is yes, a component is reusable.
 
-### Component Independence
+### c(independence) - Component Independence
 But, this doesn't mean it's completely independent.
 
 If for example a component is importing `constants` or `actionCreators` in its definition - it's not independent.
@@ -47,11 +47,11 @@ If a component is composed of multiple child components,
 than the entire hierarchy acts as a single npm package.
 Child components in this case can be defined in the same directory, or they can also be imported from npm.
 
-### Component Testability
+### c(testability) - Component Testability
 How easily can you test individual component?
 If a component is truly independent, there should be no difference on wether it's tested outside or inside of the architecture for which it was initially built.
 
-### Size of the Domain Logic
+### sizeOf(domainLogic) - Size of the Domain Logic
 Domain is the world your application lives in.
 It connects all components together and optionaly provides them with the domain logic data, so that components could adapt to different enviroments.
 
