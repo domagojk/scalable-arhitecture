@@ -6,7 +6,7 @@ Application for displaying *README.md* markdown files for listed repositories.
 This repository serves as an example on how [Recycle](https://recycle.js.org) (v2)
 is used for building large scale apps.
 
-However, the following specification also serves as a challenge.
+But, the following specification also serves as a challenge.
 
 If you wish to solve the challenge by yourself, feel free to post an issue with your solution featuring the library of your choice.
 
