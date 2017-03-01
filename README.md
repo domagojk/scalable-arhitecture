@@ -60,7 +60,7 @@ This includes: app starting point (`index.js`), config params, constants (`actio
 Good scalabale arhitecture keeps this part as small as possible.
 
 ## Challenge Specifications
-The application must be separated in five components:
+The application must be separated in five parts:
 - **(A)** component for displaying a list of repositories
 - **(B)** component for rendering fetched markdown
 - isolated parts of the app for handling app state:
