@@ -108,25 +108,23 @@ Application is composed of components and drivers:
 - **Drivers** are part of the domain logic which are connecting them together
 
 ```
-# (C) - component
-# (D) - domain logic
-.
+/src
 ├── components               # Application components
 │   ├── view                 # Components managing application visual presentation
-│   │   ├── RepoList         # (C) Component for displaying a list of repositories
-│   │   ├── Markdown         # (C) Component for rendering fetched markdown
-│   │   ├── Wrapper          # (C) React component wrapping Markdown and RepoList
+│   │   ├── RepoList         # Component for displaying a list of repositories
+│   │   ├── Markdown         # Component for rendering fetched markdown
+│   │   ├── Wrapper          # React component wrapping Markdown and RepoList
 │   ├── state                # Components managing application state
-│   │   ├── Repos            # (C) Component managing repository data
-│   │   ├── Fetching         # (C) Component managing fetching status
+│   │   ├── Repos            # Component managing repository data
+│   │   ├── Fetching         # Component managing fetching status
 │   ├── effects              # Components managing application side effects
-│   │   ├── ReadmeFetcher    # (C) Component making ajax request to GitHub API
+│   │   ├── ReadmeFetcher    # Component making ajax request to GitHub API
 ├── drivers                  # Recycle drivers
-│   └── actionStream.js      # (D) Driver feeding components with action stream
-│   └── configFeeder.js      # (D) Driver feeding components with config properties
-│   └── storeStream.js       # (D) Driver creating store and feeding components with store stream
-├── config.js                # (D) Constants, action creators, GithHub endpoint, etc.
-└── index.js                 # (D) App starting point
+│   └── actionStream.js      # Driver feeding components with action stream
+│   └── configFeeder.js      # Driver feeding components with config properties
+│   └── storeStream.js       # Driver creating store and feeding components with store stream
+├── config.js                # Constants, action creators, GithHub endpoint, etc.
+└── index.js                 # App starting point
 ```
 
 ## Bonus: Event Sourcing
