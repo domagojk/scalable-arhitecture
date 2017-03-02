@@ -3,10 +3,12 @@ import React from 'react'
 import Rx from 'rxjs/Rx'
 import ReactDOM from 'react-dom'
 import createRecycle from 'recyclejs/react'
-
+// components
 import Wrapper from './components/view/Wrapper'
-import effects from './components/effects'
-import state from './components/state'
+import ReadmeFetcher from './components/effects/ReadmeFetcher'
+import FetchingStatus from './components/state/FetchingStatus'
+import Repos from './components/state/Repos'
+// drivers
 import actionStream from './drivers/actionStream'
 import storeStream from './drivers/storeStream'
 import configFeeder from './drivers/configFeeder'
@@ -17,11 +19,12 @@ const recycle = createRecycle(React, Rx)
 // applying drivers
 recycle.use(actionStream, storeStream, configFeeder)
 
-// adding Tasks
-recycle.createComponent(state)
-recycle.createComponent(effects)
-
-// creating root react component
+// effects
+recycle.createComponent(ReadmeFetcher)
+// state
+recycle.createComponent(FetchingStatus)
+recycle.createComponent(Repos)
+// view
 const WrapperReact = recycle.createReactComponent(Wrapper)
 
 // rendering root react component

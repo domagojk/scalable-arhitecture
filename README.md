@@ -73,8 +73,8 @@ The application must be separated in five parts:
 - **(A)** component for displaying a list of repositories
 - **(B)** component for rendering fetched markdown
 - isolated parts of the app for handling app state:
- - **(C)** component for managing repository data (contents of README.md and list of repositories)
- - **(D)** component for fetching status (is README currently fetching and is it in error state)
+ - **(C)** component managing repository data (contents of README.md and list of repositories)
+ - **(D)** component managing fetching status (is README currently fetching and is it in error state)
 - **(E)** component for making side effects (ajax request to github API)
 
 The app requirements:
@@ -91,34 +91,44 @@ Bonus requirement:
 There are, of course, different ways of structuring application like this.
 
 This challenge promotes an architecture composed of:
- - view logic (components for managing application visual presentation) - **(A)**, **(B)**
- - state managment (components for managing application state) - **(C)**, **(D)**
- - effects (components for managing application side effects) - **(E)**
+ - view logic (components managing application visual presentation) - **(A)**, **(B)**
+ - state managment (components managing application state) - **(C)**, **(D)**
+ - effects (components managing application side effects) - **(E)**
  - application specific (domain logic)
 
 All future components should be placed in one of those categories.
 
 ## Solution in Recycle
-This repository is a showcase of a solution for described problem,
-created with [Recycle](https://recycle.js.org) (version 2) which is combining React and RxJS.
+[Recycle](https://recycle.js.org) is a small library for managing observable streams.
+In this case, it's used for defining components managing view (React), state and side effects.
 
 ### Application structure
+Recycle application is composed of components and drivers:
+- **Components** are independent units of the app doing most of the work
+- **Drivers** are part of the domain logic which are connecting them together
 
-### Components
+Overview of the complete application structure
 
-#### (A) Markdown
-
-#### (B) RepoList
-
-#### (C) Repositories Aggregate
-
-#### (D) Fetching Aggregate
-
-#### (E) Readme Fetcher
-
-### Domain Logic
-
-#### Config
-#### Drivers
+```
+# (C) - component
+# (D) - domain logic
+.
+├── components               # Application components
+│   ├── view                 # Components managing application visual presentation
+│   │   ├── RepoList         # (C) Component for displaying a list of repositories
+│   │   ├── Markdown         # (C) Component for rendering fetched markdown
+│   │   ├── Wrapper          # (C) React component wrapping Markdown and RepoList
+│   ├── state                # Components managing application state
+│   │   ├── Repos            # (C) Component managing repository data
+│   │   ├── Fetching         # (C) Component managing fetching status
+│   ├── effects              # Components managing application side effects
+│   │   ├── ReadmeFetcher    # (C) Component making ajax request to GitHub API
+├── drivers                  # Recycle drivers
+│   └── actionStream.js      # (D) Driver feeding components with action stream
+│   └── configFeeder.js      # (D) Driver feeding components with config properties
+│   └── storeStream.js       # (D) Driver creating store and feeding components with store stream
+├── config.js                # (D) Constants, action creators, GithHub endpoint, etc.
+└── index.js                 # (D) App starting point
+```
 
 ## Bonus: Event Sourcing
