@@ -103,11 +103,9 @@ All future components should be placed in one of those categories.
 In this case, it's used for defining components managing view (React), state and side effects.
 
 ### Application structure
-Recycle application is composed of components and drivers:
+Application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
 - **Drivers** are part of the domain logic which are connecting them together
-
-Overview of the complete application structure
 
 ```
 # (C) - component
