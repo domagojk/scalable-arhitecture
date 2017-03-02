@@ -105,36 +105,30 @@ Recycle application is composed of components and drivers:
 
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
 
-Every component has a `sourceType` property which serves as component requirement.
+### SourceTypes
+All component requirements are defined using `sourceType` property.
 
-For example, in order to show a list of repositores,
+To render a list of repositores, for eaxample,
 `RepoList` component needs an array of repositores from the application state (store).
 Since, this data changes over time, it is represented as a observable stream - `store$`.
 
-So rather than forcing update from the outside (Redux arhitecture), 
+It also needs to dispatch an action whenever a repository is clicked.
+This is why its second requirement is `actionTypes` defined in `config`.
+
+```javascript
+function RepoList () {
+  return {
+    sourceTypes: {
+      store$: sourceTypes.observable.isRequired,
+      actionCreators: sourceTypes.object.isRequired
+    }
+    ...
+  }
+}
+```
+
+### Store
+Rather than forcing update from the outside (like in Redux arhitecture), 
 any time `repos` property is changed, component updates itself. 
-
-Components are in complete controll over their lifecycle.
-
-```
-/src
-├── components               # Application components
-│   ├── view                 # Components managing application visual presentation
-│   │   ├── RepoList         # Displaying a list of repositories
-│   │   ├── Markdown         # Rendering fetched markdown
-│   │   ├── Wrapper          # React component wrapping Markdown and RepoList
-│   ├── state                # Components managing application state
-│   │   ├── Repos            # Managing repository data
-│   │   ├── FetchingStatus   # Managing fetching status
-│   ├── effects              # Components managing application side effects
-│   │   ├── ReadmeFetcher    # Making ajax request to GitHub API
-├── drivers                  # Recycle drivers
-│   └── actionStream.js      # Driver feeding components with action stream
-│   └── configFeeder.js      # Driver feeding components with config properties
-│   └── storeStream.js       # Driver creating store and feeding components with store stream
-├── config.js                # Constants, action creators, GithHub endpoint, etc.
-└── index.js                 # App starting point
-```
-
 
 ## Bonus: Event Sourcing
