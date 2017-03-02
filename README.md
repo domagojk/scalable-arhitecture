@@ -107,18 +107,31 @@ Application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
 - **Drivers** are part of the domain logic which are connecting them together
 
+![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
+
+Every component has a `sourceType` property which serves as component requirement.
+
+For example, in order to show a list of repositores,
+`RepoList` component needs an array of repositores from the application state (store).
+Since, this data changes over time, it is represented as a observable stream - `store$`.
+
+So rather than forcing update from the outside (Redux arhitecture), 
+any time `repos` property is changed, component updates itself. 
+
+Components are in complete controll over their lifecycle.
+
 ```
 /src
 ├── components               # Application components
 │   ├── view                 # Components managing application visual presentation
-│   │   ├── RepoList         # Component for displaying a list of repositories
-│   │   ├── Markdown         # Component for rendering fetched markdown
+│   │   ├── RepoList         # Displaying a list of repositories
+│   │   ├── Markdown         # Rendering fetched markdown
 │   │   ├── Wrapper          # React component wrapping Markdown and RepoList
 │   ├── state                # Components managing application state
-│   │   ├── Repos            # Component managing repository data
-│   │   ├── Fetching         # Component managing fetching status
+│   │   ├── Repos            # Managing repository data
+│   │   ├── FetchingStatus   # Managing fetching status
 │   ├── effects              # Components managing application side effects
-│   │   ├── ReadmeFetcher    # Component making ajax request to GitHub API
+│   │   ├── ReadmeFetcher    # Making ajax request to GitHub API
 ├── drivers                  # Recycle drivers
 │   └── actionStream.js      # Driver feeding components with action stream
 │   └── configFeeder.js      # Driver feeding components with config properties
@@ -126,5 +139,6 @@ Application is composed of components and drivers:
 ├── config.js                # Constants, action creators, GithHub endpoint, etc.
 └── index.js                 # App starting point
 ```
+
 
 ## Bonus: Event Sourcing
