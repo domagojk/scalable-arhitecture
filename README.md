@@ -308,4 +308,26 @@ export default {
   }
 }
 ```
+
+## Application Overview
+```
+/src
+├── components               # Application components
+│   ├── view                 # Components managing application visual presentation
+│   │   ├── RepoList         # Displaying a list of repositories
+│   │   ├── Markdown         # Rendering fetched markdown
+│   │   ├── Wrapper          # React component wrapping Markdown and RepoList
+│   ├── state                # Components managing application state
+│   │   ├── Repos            # Managing repository data
+│   │   ├── FetchingStatus   # Managing fetching status
+│   ├── effects              # Components managing application side effects
+│   │   ├── ReadmeFetcher    # Making ajax request to GitHub API
+├── drivers                  # Recycle drivers
+│   └── actionStream.js      # Driver feeding components with action stream
+│   └── configFeeder.js      # Driver feeding components with config properties
+│   └── storeStream.js       # Driver creating store and feeding components with store stream
+├── config.js                # Constants, action creators, GithHub endpoint, etc.
+└── index.js                 # App starting point
+```
+
 ## Bonus: Event Sourcing
