@@ -112,7 +112,7 @@ List of components:
 Every component is independent and isolated, but it still has to communicate with the domain logic.
 
 In a classic React arhitecture, 
-for this we use a "top-down" approach where all the data from the domain logic is passed to root component and than forwarded to its children.
+for this we use a "top-down" approach where all the data from the domain logic is passed to the root component and than forwarded to its children.
 But to make it more convenient, 
 this tree hierarchy is sometimes broken by using "workholes" to the domain logic (Redux containers or similar components).
 
