@@ -169,7 +169,7 @@ Based on some input, a component is producing an output.
 This output is sometimes a JSX formatted view, action stream, state stream etc.
 
 Recycle component doesn't render anything.
-Driver is doing that (in this case: "React driver").
+This is all done by a driver (in this case: "React driver").
 
 Since isolated, a component is unaware how we are using its output,
 which means, we can use it for calculating app state.
