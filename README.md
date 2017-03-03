@@ -174,7 +174,7 @@ which means, we can use it for calculating app state.
 Recycle's store driver indentifies a "store component" by an `aggregate` property.
 
 Aggregate serves as a component initial state and
-it gives the store driver information about which part of the application state is modifing.
+it gives the store driver information about which part of the state a component is modifing.
 
 For example, if the complete app state has to be an object:
 ```javascript
