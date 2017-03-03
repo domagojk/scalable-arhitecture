@@ -109,12 +109,12 @@ List of components:
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
 
 ### SourceTypes
-Every component is independent and isolated, but still it has to work with the domain logic.
+Every component is independent and isolated, but it still has to communicate with the domain logic.
 
 In a classic React arhitecture, 
-we use "top-down" approach where this data is passed to a root component.
+for this we use a "top-down" approach where all the data from the domain logic is passed to root component and than forwarded to its children.
 But to make it more convenient, 
-this pattern is sometimes broken by using "workholes" to the domain logic (Redux containers or similar components).
+this tree hierarchy is sometimes broken by using "workholes" to the domain logic (Redux containers or similar components).
 
 In Recycle, this is done differently.
 
