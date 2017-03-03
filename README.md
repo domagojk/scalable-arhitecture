@@ -106,7 +106,7 @@ List of components:
 - state: `FetchingStatus` **(C)**, `Repos` **(D)** (managing application state)
 - effects: `ReadmeFetcher` **(E)** (managing application side effects)
 
-![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
+![App structure](https://cloud.githubusercontent.com/assets/1868852/23548181/86f0e176-0006-11e7-853d-ccc926e8605d.png)
 
 ### SourceTypes
 Every component is independent and isolated, but it still has to communicate with the domain logic.
