@@ -91,12 +91,10 @@ Bonus requirement:
 There are, of course, different ways of structuring application like this.
 
 This challenge promotes an architecture composed of:
- - view logic (components managing application visual presentation) - **(A)**, **(B)**
- - state managment (components managing application state) - **(C)**, **(D)**
- - effects (components managing application side effects) - **(E)**
+ - view logic (components managing application visual presentation)
+ - state managment (components managing application state)
+ - effects (components managing application side effects)
  - application specific (domain logic)
-
-All future components should be placed in one of those categories.
 
 ## Solution in Recycle
 Recycle application is composed of components and drivers:
