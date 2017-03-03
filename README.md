@@ -337,7 +337,7 @@ export default {
 This "bonus" part is here to show what can be accomplished when having complete controll over the application.
 
 Since in Recycle, all actions are represented as an observable we can use this and make the application where the
-source of truth is not the state (as in Redux app), but the action itself - an event.
+source of truth is not the state (as it's often the case in Redux app), but the action itself - an event.
 
 In short this is the idea behind "Event Sourcing". 
 If you are unfamiliar with this concept,
@@ -348,3 +348,25 @@ If you enable it, and start a server using `node server.js` (in project root),
 this application will work in sync accross multiple clients.
 
 It uses events as a source of truth and its syncing algorithm is managed by [ShareDB](https://github.com/share/sharedb).
+
+It works similar to google docs, allowing everyone to use the app simultaneously (even offline) where all actions
+are synced using [Operational Transformation (OT)](https://en.wikipedia.org/wiki/Operational_transformation)
+
+## Comaparison to React/Redux
+
+### Advantages
+  - Components are independet isolated parts of the app, which can be reused in different enviroments 
+    (this includes handling state and side effects)
+  - Ability to separate component presentation (view) and logic (actions, reducers). No inline event handlers.
+  - Components are not controlled "from the outside", "force updating" them every time the state is changed.
+    Recycle component is listening to an observable and updates itself.
+  - Ability to "break" the state more easily (no need for root reducer)
+  - Ability to use observables for async operations (which, among other things, saves you from heavily using switch/case logic)
+  - Ability to create side effects without middlewares
+  - Observables forces you to write more declarative code
+  - More? (please comment)
+
+### Disadvatages
+  - Learning curve for using observable streams is steep
+  - Currently lacking dev tools like "redux-devtools"
+  - More? (please comment)
