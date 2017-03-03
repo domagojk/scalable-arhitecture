@@ -127,8 +127,6 @@ For example, to render a list of repositores
 And to dispatch an action when a repository is clicked, it needs `actionTypes` (defined in `config`).
 
 This requirements are defined using `sourceTypes`.
-When "feeded" by drivers, `sources.store$` and `sources.actionCreators` will be avaiable in the component
-actions (managing user behaviour) and reducers (managing component local state).
 
 ```javascript
 function RepoList () {
@@ -155,6 +153,9 @@ function RepoList () {
   }
 }
 ```
+
+When "feeded" by drivers, `sources.store$` and `sources.actionCreators` will be avaiable in the component
+actions (managing user behaviour) and reducers (managing component local state).
 
 ### Store
 Rather than forcing update from the outside (like in Redux arhitecture), 
