@@ -108,7 +108,7 @@ List of components:
 
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23548181/86f0e176-0006-11e7-853d-ccc926e8605d.png)
 
-### SourceTypes
+### View components
 Every component is independent and isolated, but it still has to communicate with the domain logic.
 
 In a classic React arhitecture, 
