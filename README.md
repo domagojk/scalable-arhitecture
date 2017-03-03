@@ -26,8 +26,8 @@ and the part of the application connecting them together should be as small as p
 Note that a term "component" (sometimes called "module") indicates an isolated part of the application.
 It's a broader concept than "React component".
 I had deliberately chosen the same term, 
-because they could have a parent-child relationship similar to a React hierarchy.
-Also a React component itself is... well - a component, but only for a presentational part of the app.
+because they could have a parent-child relationship similar to a React hierarchy
+and a React component itself is... well - a component, but only for a presentational part of the app (view).
 
 ```
                       c(reusability) * c(independence) * c(testability)
@@ -88,9 +88,9 @@ Bonus requirement:
   (algorithm for making app in sync doesn't have to be perfect or optimised. Proving that it's conceptually possible is sufficient)
 
 ## Proposed Arhitecture
-There are, of course, different ways of structuring application like this.
+There are, of course, different ways of structuring an application like this.
 
-This challenge promotes an architecture composed of:
+This challenge promotes the architecture which is composed of:
  - view logic (components managing application visual presentation)
  - state managment (components managing application state)
  - effects (components managing application side effects)
@@ -99,7 +99,7 @@ This challenge promotes an architecture composed of:
 ## Solution in Recycle
 Recycle application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
-- **Drivers** are part of the domain logic which are connecting them together
+- **Drivers** are part of the domain logic which are connecting them together (part of the app domain logic)
 
 List of components:
 - view: `RepoList` **(A)**, `Markdown` **(B)** (managing application visual presentation using React)
@@ -114,7 +114,7 @@ Every component is independent and isolated, but it still has to communicate wit
 In a classic React arhitecture, 
 for this we use a "top-down" approach where all the data from the domain logic is passed to the root component and than forwarded to its children.
 But to make it more convenient, 
-this tree hierarchy is sometimes broken by using "workholes" to the domain logic (Redux containers or similar components).
+this tree hierarchy is sometimes broken by using "wormholes" to the domain logic (Redux containers or similar components).
 
 In Recycle, this is done differently.
 
@@ -161,25 +161,26 @@ actions (managing user behaviour) and reducers (managing component local state).
 If you are used to React/Redux arhitecture you probably never think about the application state as something a component would manage.
 But, if a component can be indepent, reusable and testable, why would you use it only for the view part of the app?
 
-Every component is merly describing itself. 
+Every Recycle component acts like a function. 
 Based on some input, a component is producing an output. 
 This output is sometimes a JSX formatted view, action stream, reducers stream etc.
 
 Recycle component doesn't render anything.
 Driver is doing that (in this case: "React driver").
 
-This means, a component can be used for calculating state.
+This means, a component can also be used for calculating state.
+
 We can feed a component with the `actions$` stream and use its output for the application store.
 
-Since isolated, a component is unaware of the application state or how are we using its output.
+Since isolated, a component is unaware of the application state and how are we using its output.
 This output can represent a complete or just a part of the application state.
 
-In this app, we are using Recycle's store driver which can indetify a "state component" by its `aggregate` property.
+In this example, we are using Recycle's store driver which can indetify a "state component" by its `aggregate` property.
 
 Aggregate has two functions: it serves as a component initial state and
-it gives a store driver information about which part of the application state will the component calculate the state.
+it gives a store driver information about which part of the application state a component will modify.
 
-For example, if the complete application has to be an object:
+For example, if the complete app state has to be an object:
 ```javascript
 {
   active: 'homepage',
@@ -190,7 +191,7 @@ For example, if the complete application has to be an object:
 }
 ```
 
-we can define calculate this using two components. 
+we can calculate it by using two components.
 First one for keeping track of the active page:
 
 ```javascript
@@ -249,7 +250,7 @@ export default {
 }
 ```
 
-Store driver will subscribe to a component `reducers` stream, and calculate the application state.
-Race conditions are not possible, because store driver will throw an error if multiple componets try to calculate the same property.
+Store driver will subscribe to a component `reducers` stream, and connect all the properties.
+In case multiple componets try to calculate the same property, the store driver will throw an error.
 
 ## Bonus: Event Sourcing
