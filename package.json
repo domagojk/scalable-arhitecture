@@ -1,7 +1,7 @@
 {
   "name": "recycle-markdown-fetcher",
   "version": "0.1.0",
-  "homepage": "https://domagojk.github.io/recycle-markdown-fetcher/",
+  "homepage": "https://domagojk.github.io/Markdown-Fetcher-Challenge/",
   "devDependencies": {
     "eslint": "^3.9.1",
     "eslint-config-standard": "^6.2.1",
