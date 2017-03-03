@@ -163,21 +163,17 @@ But, if a component can be indepent, reusable and testable, why would you use it
 
 Every Recycle component acts like a function. 
 Based on some input, a component is producing an output. 
-This output is sometimes a JSX formatted view, action stream, reducers stream etc.
+This output is sometimes a JSX formatted view, action stream, state stream etc.
 
 Recycle component doesn't render anything.
 Driver is doing that (in this case: "React driver").
 
-This means, a component can also be used for calculating state.
-
-We can feed a component with the `actions$` stream and use its output for the application store.
-
-Since isolated, a component is unaware of the application state and how are we using its output.
-This output can represent a complete or just a part of the application state.
+Since isolated, a component is unaware how are we using its output,
+which means, we can use it for calculating app state.
 
 In this example, we are using Recycle's store driver which can indetify a "state component" by its `aggregate` property.
 
-Aggregate has two functions: it serves as a component initial state and
+Aggregate serves as a component initial state and
 it gives a store driver information about which part of the application state a component will modify.
 
 For example, if the complete app state has to be an object:
