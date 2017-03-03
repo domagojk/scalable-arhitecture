@@ -122,11 +122,11 @@ Basically all components have two sets of inputs:
   - props - used by components organized in a tree hierarchy
   - sources - used by drivers
 
-For example, to render a list of repositores
-`RepoList` component needs an array of repositores from the application state (`store$`).
-And to dispatch an action when a repository is clicked, it needs `actionTypes` (defined in `config`).
+For example, `RepoList` component requires:
+  - an array of repositores from the application state (`store$`)
+  -  `actionTypes` (defined in `config`) for dispatching an action when a repository is clicked
 
-This requirements are defined using `sourceTypes`.
+This requirements are defined using `sourceTypes`:
 
 ```javascript
 function RepoList () {
