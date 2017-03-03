@@ -161,7 +161,7 @@ After drivers inject the data which matches component's sourceTypes,
 actions (managing user behavior) and reducers (managing component local state).
 
 ### Store components
-If you are used to React/Redux arhitecture you probably never think about the application state as something a component would manage.
+If you are used to React/Redux arhitecture you probably never think about the application state as something components would manage.
 But, if a component can be indepent, reusable and testable, why would you use it only for the view part of the app?
 
 Every Recycle component acts like a function. 
