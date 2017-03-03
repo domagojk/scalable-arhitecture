@@ -157,8 +157,99 @@ function RepoList () {
 When "feeded" by drivers, `sources.store$` and `sources.actionCreators` will be avaiable in the component
 actions (managing user behaviour) and reducers (managing component local state).
 
-### Store
-Rather than forcing update from the outside (like in Redux arhitecture), 
-any time `repos` property is changed, component updates itself. 
+### Store components
+If you are used to React/Redux arhitecture you probably never think about the application state as something a component would manage.
+But, if a component can be indepent, reusable and testable, why would you use it only for the view part of the app?
+
+Every component is merly describing itself. 
+Based on some input, a component is producing an output. 
+This output is sometimes a JSX formatted view, action stream, reducers stream etc.
+
+Recycle component doesn't render anything.
+Driver is doing that (in this case: "React driver").
+
+This means, a component can be used for calculating state.
+We can feed a component with the `actions$` stream and use its output for the application store.
+
+Since isolated, a component is unaware of the application state or how are we using its output.
+This output can represent a complete or just a part of the application state.
+
+In this app, we are using Recycle's store driver which can indetify a "state component" by its `aggregate` property.
+
+Aggregate has two functions: it serves as a component initial state and
+it gives a store driver information about which part of the application state will the component calculate the state.
+
+For example, if the complete application has to be an object:
+```javascript
+{
+  active: 'homepage',
+  users: [{
+    name: 'John Doe',
+    address: '21 jump street'
+  }]
+}
+```
+
+we can define calculate this using two components. 
+First one for keeping track of the active page:
+
+```javascript
+export default {
+  sourceTypes: {
+    action$: sourceTypes.observable.isRequired,
+    actionTypes: sourceTypes.object.isRequired
+  },
+
+  aggregate: {
+    active: 'homepage'
+  },
+
+  reducers (sources) {
+    return [
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.PAGE_CHANGE)
+        .reducer(function (state, action) {
+          state.active = action.page
+          return state
+        })
+    ]
+  }
+}
+```
+
+The second one for updating a users list:
+
+```javascript
+export default {
+  sourceTypes: {
+    action$: sourceTypes.observable.isRequired,
+    actionTypes: sourceTypes.object.isRequired
+  },
+
+  aggregate: {
+    users: [{
+      name: 'John Doe',
+      address: '21 jump street'
+    }]
+  },
+
+  reducers (sources) {
+    return [
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.ADD_USER)
+        .reducer(function (state, action) {
+          state.users = [...state.users, {
+            name: action.name,
+            address: action.address
+          }]
+          return state
+        })
+    ]
+  }
+}
+```
+
+Store driver will subscribe to a component `reducers` stream, and calculate the application state.
+Race conditions are not possible, because store driver will throw an error if multiple componets try to calculate the same property.
 
 ## Bonus: Event Sourcing
