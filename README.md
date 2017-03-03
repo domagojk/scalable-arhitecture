@@ -73,8 +73,8 @@ The application must be separated in five parts:
 - **(A)** component for displaying a list of repositories
 - **(B)** component for rendering fetched markdown
 - isolated parts of the app for handling app state:
- - **(C)** component managing repository data (contents of README.md and list of repositories)
- - **(D)** component managing fetching status (is README currently fetching and is it in error state)
+ - **(C)** component managing fetching status (is README currently fetching and is it in error state)
+ - **(D)** component managing repository data (contents of README.md and list of repositories)
 - **(E)** component for making side effects (ajax request to github API)
 
 The app requirements:
@@ -103,7 +103,7 @@ Recycle application is composed of components and drivers:
 
 List of components:
 - view: `RepoList` **(A)**, `Markdown` **(B)** (managing application visual presentation using React)
-- state: `Repos` **(C)**, `FetchingStatus` **(D)** (managing application state)
+- state: `FetchingStatus` **(C)**, `Repos` **(D)** (managing application state)
 - effects: `ReadmeFetcher` **(E)** (managing application side effects)
 
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
