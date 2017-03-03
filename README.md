@@ -153,7 +153,7 @@ function RepoList () {
   }
 }
 ```
-When component initialize, drivers can "feed" it with sources.
+When component is initialized, drivers can "feed" it with sources.
 In case of a "view component", this is done **before** it's mounted to the DOM.
 
 After drivers inject the data which matches component's sourceTypes, 
