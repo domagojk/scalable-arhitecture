@@ -171,7 +171,7 @@ Driver is doing that (in this case: "React driver").
 Since isolated, a component is unaware how we are using its output,
 which means, we can use it for calculating app state.
 
-Recycle's store driver uses the state of a component which contains the `aggregate` property.
+Recycle's store driver indentifies a "store component" by an `aggregate` property.
 
 Aggregate serves as a component initial state and
 it gives the store driver information about which part of the application state is modifing.
