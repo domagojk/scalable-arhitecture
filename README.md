@@ -153,9 +153,12 @@ function RepoList () {
   }
 }
 ```
+When component initialize, drivers can "feed" it with sources.
+In case of a "view component", this is done **before** it's mounted to the DOM.
 
-When "feeded" by drivers, `sources.store$` and `sources.actionCreators` will be avaiable in the component
-actions (managing user behaviour) and reducers (managing component local state).
+After drivers inject the data which matches component's sourceTypes, 
+`sources.store$` and `sources.actionCreators` will be avaiable in the component
+actions (managing user behavior) and reducers (managing component local state).
 
 ### Store components
 If you are used to React/Redux arhitecture you probably never think about the application state as something a component would manage.
