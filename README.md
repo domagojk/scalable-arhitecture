@@ -103,6 +103,11 @@ Recycle application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
 - **Drivers** are part of the domain logic which are connecting them together
 
+List of components:
+- view: `RepoList` **(A)**, `Markdown` **(B)** (managing application visual presentation using React)
+- state: `Repos` **(C)**, `FetchingStatus` **(D)** (managing application state)
+- effects: `ReadmeFetcher` **(E)** (managing application side effects)
+
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
 
 ### SourceTypes
