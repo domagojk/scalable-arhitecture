@@ -217,7 +217,7 @@ export default {
 }
 ```
 
-The second one for updating a users list:
+The second one for updating the users list:
 
 ```javascript
 export default {
@@ -251,7 +251,8 @@ export default {
 
 In case multiple componets try to calculate the same property, the store driver will throw an error.
 
-To make it more reusable, it's also posible to define the state properties in the domain logic:
+To make it more reusable, it's also posible to define the state properties in the domain logic
+and pass it as arguments.
 
 ```javascript
 function exampleStateComponent (propName1, propName2) {
@@ -273,4 +274,38 @@ function exampleStateComponent (propName1, propName2) {
 recycle.createComponent(exampleStateComponent('users', 'active'))
 ```
 
+### Effect components
+Similar to store components, effect components doesn't represent a view.
+
+The effect component listens to `action$` observable and based on it, it defines its action stream.
+
+What makes it special is that this is a part of the app making side effects.
+
+For example, `ReadmeFetcher` is listening for `'REQUEST_README'` action,
+and when it triggers, a component is making an ajax request and dispatches response in `'README_FETCHED'` action:
+
+```javascript
+export default {
+  sourceTypes: {
+    action$: sourceTypes.observable.isRequired,
+    actionTypes: sourceTypes.object.isRequired,
+    actionCreators: sourceTypes.object.isRequired,
+    getReadmeEndpoint: sourceTypes.func.isRequired
+  },
+
+  actions (sources) {
+    return [
+      sources.action$
+        .filter(a => a.type === sources.actionTypes.REQUEST_README)
+        .map(a => a.path)
+        .debounceTime(500)
+        .switchMap(path => Rx.Observable.ajax(sources.getReadmeEndpoint(path))
+          .map(res => ({ error: false, document: atob(res.response.content) }))
+          .catch(err => Rx.Observable.of({ error: err.message, document: '' }))
+        )
+        .map(sources.actionCreators.readmeFetched)
+    ]
+  }
+}
+```
 ## Bonus: Event Sourcing
