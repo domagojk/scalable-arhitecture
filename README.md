@@ -168,13 +168,13 @@ This output is sometimes a JSX formatted view, action stream, state stream etc.
 Recycle component doesn't render anything.
 Driver is doing that (in this case: "React driver").
 
-Since isolated, a component is unaware how are we using its output,
+Since isolated, a component is unaware how we are using its output,
 which means, we can use it for calculating app state.
 
-In this example, we are using Recycle's store driver which can indetify a "state component" by its `aggregate` property.
+Recycle's store driver uses the state of a component which contains the `aggregate` property.
 
 Aggregate serves as a component initial state and
-it gives a store driver information about which part of the application state a component will modify.
+it gives the store driver information about which part of the application state is modifing.
 
 For example, if the complete app state has to be an object:
 ```javascript
@@ -246,7 +246,28 @@ export default {
 }
 ```
 
-Store driver will subscribe to a component `reducers` stream, and connect all the properties.
 In case multiple componets try to calculate the same property, the store driver will throw an error.
+
+To make it more reusable, it's also posible to define the state properties in the domain logic:
+
+```javascript
+function exampleStateComponent (propName1, propName2) {
+  return {
+    sourceTypes: {
+      action$: sourceTypes.observable.isRequired,
+      actionTypes: sourceTypes.object.isRequired
+    },
+
+    aggregate: {
+      [propName1]: 'data',
+      [propName2]: 'data'
+    }
+  }
+}
+```
+
+```javascript
+recycle.createComponent(exampleStateComponent('users', 'active'))
+```
 
 ## Bonus: Event Sourcing
