@@ -331,3 +331,20 @@ export default {
 ```
 
 ## Bonus: Event Sourcing
+> (5) the app should work offline AND in sync accross multiple clients using websockets or similar communication protocol
+  (algorithm for making app in sync doesn't have to be perfect or optimised. Proving that it's conceptually possible is sufficient)
+
+This "bonus" part is here to show what can be accomplished when having complete controll over the application.
+
+Since in Recycle, all actions are represented as an observable we can use this and make the application where the
+source of truth is not the state (as in Redux app), but the action itself - an event.
+
+In short this is the idea behind "Event Sourcing". 
+If you are unfamiliar with this concept,
+here is a good introduction presentation: [Event Sourcing: the good, the bad and the complicated](https://www.youtube.com/watch?v=8NuHNtwjync)
+
+In config file of this project, there is an option called `sync`.
+If you enable it, and start a server using `node server.js` (in project root),
+this application will work in sync accross multiple clients.
+
+It uses events as a source of truth and its syncing algorithm is managed by [ShareDB](https://github.com/share/sharedb).
