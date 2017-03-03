@@ -106,14 +106,25 @@ Recycle application is composed of components and drivers:
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23521381/009ac7b8-ff7f-11e6-962c-129a5291856c.png)
 
 ### SourceTypes
-All component requirements are defined using `sourceType` property.
+Every component is independent and isolated, but still it has to work with the domain logic.
 
-To render a list of repositores, for eaxample,
-`RepoList` component needs an array of repositores from the application state (store).
-Since, this data changes over time, it is represented as a observable stream - `store$`.
+In a classic React arhitecture, 
+we use "top-down" approach where all the data is passed to a root component.
+However, this tree structure is often broken by the use of Redux containers (or similar components).
 
-It also needs to dispatch an action whenever a repository is clicked.
-This is why its second requirement is `actionTypes` defined in `config`.
+In Recycle, this is done differently.
+
+Basically all components have two sets of inputs:
+  - props - used by components organized in a tree hierarchy
+  - sources - used by drivers which are connecting component to the domain logic
+
+For example, to render a list of repositores
+`RepoList` component needs an array of repositores from the application state (`store$`).
+And to dispatch an action when a repository is clicked, it needs `actionTypes` (defined in `config`).
+
+This requirements are defined using `sourceTypes`.
+When "feeded" by drivers, `sources.store$` and `sources.actionCreators` will be avaiable in the component
+actions (managing user behaviour) and reducers (managing component local state).
 
 ```javascript
 function RepoList () {
@@ -121,8 +132,22 @@ function RepoList () {
     sourceTypes: {
       store$: sourceTypes.observable.isRequired,
       actionCreators: sourceTypes.object.isRequired
+    },
+
+    actions (sources) {
+      // sources.store$ and soruces.actionCreators
+      // are avaiable after component is initialized 
+    },
+
+    reducers (sources) {
+      // sources.store$ and soruces.actionCreators
+      // are avaiable after component is initialized 
+    },
+
+    view (props, state) {
+      // props are passed by its parent component
+      // local state is calculated with reducers
     }
-    ...
   }
 }
 ```
