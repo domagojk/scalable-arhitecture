@@ -112,14 +112,15 @@ List of components:
 Every component is independent and isolated, but still it has to work with the domain logic.
 
 In a classic React arhitecture, 
-we use "top-down" approach where all the data is passed to a root component.
-However, this tree structure is often broken by the use of Redux containers (or similar components).
+we use "top-down" approach where this data is passed to a root component.
+But to make it more convenient, 
+this pattern is sometimes broken by using "workholes" to the domain logic (Redux containers or similar components).
 
 In Recycle, this is done differently.
 
 Basically all components have two sets of inputs:
   - props - used by components organized in a tree hierarchy
-  - sources - used by drivers which are connecting component to the domain logic
+  - sources - used by drivers
 
 For example, to render a list of repositores
 `RepoList` component needs an array of repositores from the application state (`store$`).
