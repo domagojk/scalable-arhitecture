@@ -28,8 +28,6 @@ Personally, I'm not aware of any clear way for determening application scalabili
 
 So, I'm now going to propose an eqation of my own.
 
-It's based on my personal experience and relatively old articles by Addy Osmany ([article](https://addyosmani.com/largescalejavascript)) and Nicholas Zakas ([presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs)).
-
 Basically the application should be created as a set of components,
 and the part of the application connecting them together should be as small as possible.
 
