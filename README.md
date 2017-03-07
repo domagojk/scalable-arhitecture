@@ -36,9 +36,9 @@ and the part of the application connecting them together should be as small as p
 
 Note that a term "component" (module) indicates an isolated part of the application.
 It's a broader concept than "React component".
-I had deliberately chosen the same term, 
-because they could have a parent-child relationship similar to a React hierarchy
-and a React component itself is... well - a component, but only for a presentational part of the app (view).
+I had deliberately chosen the same term though, 
+because parent-child relationships similar to a React hierarchy is possible as well,
+and a React component itself can be... well - a component, but only for a presentational part of the app (view).
 
 
 ```
