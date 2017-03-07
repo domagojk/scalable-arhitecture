@@ -10,24 +10,37 @@ But, the following specification also serves as a challenge.
 
 If you wish to solve the challenge by yourself, feel free to post an issue with your solution featuring the library of your choice.
 
-## Scalability Index
-The goal is to create a scalabale frontend architecture.
+## Goal of the project
+Imagine you are the lead developer for a web application similar to facebook (currently focused only on frontend).
+
+Hundreds of employees in the company depend on you to make an arhitecture where
+"senior" or "junior" developers can contribute to the project.
+To make it more interesting, it's also required to make a public API which
+would be used for creating plugins.
+
+It's obvious that we need good modular arhitecture which scales well.
+
+Every module should be powerful enough to create any feature but also isolated enough so that
+you don't need to waste much time on integrating that module in the system.
+
 But, in order to do this, we must first define what does it mean for an application to be scalable.
 
+## Scalability Index
 Personally, I'm not aware of any clear way for determening application scalability (if there is one, please let me know).
 
 So, I'm now going to define my own. 
 
-It is based on my personal experience and relatively old [article](https://addyosmani.com/largescalejavascript) from Addy Osmany and even older [presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs) of Nicholas Zakas.
+It is based on my personal experience and relatively old articles from Addy Osmany ([article](https://addyosmani.com/largescalejavascript)) and Nicholas Zakas ([presentation](https://www.youtube.com/watch?v=b5pFv9NB9fs)).
 
 Basically the application should be created as a set of components,
 and the part of the application connecting them together should be as small as possible.
 
-Note that a term "component" (sometimes called "module") indicates an isolated part of the application.
+Note that a term "component" (module) indicates an isolated part of the application.
 It's a broader concept than "React component".
 I had deliberately chosen the same term, 
 because they could have a parent-child relationship similar to a React hierarchy
 and a React component itself is... well - a component, but only for a presentational part of the app (view).
+
 
 ```
                       c(reusability) * c(independence) * c(testability)
@@ -42,10 +55,10 @@ scalabilityIndex =  -----------------------------------------------------
 If the answer is yes, a component is reusable.
 
 ### c(independence) - Component Independence
-But, this doesn't mean it's completely independent.
+But, this doesn't mean a component is independent.
 
-If for example a component is importing `constants` or `actionCreators` in its definition - it's not independent.
-Although it can be reused in the same application, it's tightly coupled for that specific enviroment.
+If for example a component is importing `constants` or `actionCreators` in its definition, 
+it could be reused in the same application, but it's tightly coupled for that specific enviroment.
 
 A good case for testing its dependence is: can a specific component be published on npm by its own? 
 
@@ -58,11 +71,13 @@ Child components in this case can be defined in the same directory, or they can 
 
 ### c(testability) - Component Testability
 How easily can you test individual component?
-If a component is truly independent, there should be no difference on wether it's tested outside or inside of the architecture for which it was initially built.
+If a component is truly independent, 
+there should be no difference on wether it's tested outside or inside of the architecture for which it was initially built.
 
 ### sizeOf(domainLogic) - Size of the Domain Logic
 Domain is the world your application lives in.
-It connects all components together and optionaly provides them with the domain logic data, so that components could adapt to different enviroments.
+It connects all components together and optionaly provides them with the domain logic data, 
+so that components could adapt to different enviroments.
 
 This includes: app starting point (`index.js`), config params, constants (`actionTypes`), action object structure (`actionCreators`), etc.
 
@@ -99,7 +114,7 @@ This challenge promotes the architecture which is composed of:
 ## Solution in Recycle
 Recycle application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
-- **Drivers** are part of the domain logic which are connecting them together (part of the app domain logic)
+- **Drivers** are part of the app domain logic which are connecting them together
 
 List of components:
 - view: `RepoList` **(A)**, `Markdown` **(B)** (managing application visual presentation using React)
@@ -124,7 +139,7 @@ Basically all components have two sets of inputs:
 
 For example, `RepoList` component requires:
   - an array of repositores from the application state (`store$`)
-  -  `actionTypes` (defined in `config`) for dispatching an action when a repository is clicked
+  - `actionTypes` (defined in `config`) for dispatching an action when a repository is clicked
 
 This requirements are defined using `sourceTypes`:
 
@@ -275,14 +290,13 @@ recycle.createComponent(exampleStateComponent('users', 'active'))
 ```
 
 ### Effect components
-Similar to store components, effect components doesn't represent a view.
+Similar to store components, components for managing side-effects doesn't have a view.
 
 The effect component listens to `action$` observable and based on it, it defines its action stream.
 
-What makes it special is that this is a part of the app making side effects.
-
 For example, `ReadmeFetcher` is listening for `'REQUEST_README'` action,
-and when it triggers, a component is making an ajax request and dispatches response in `'README_FETCHED'` action:
+and when it's triggered,
+a component is making an ajax request and dispatches response inside of `'README_FETCHED'` action:
 
 ```javascript
 export default {
@@ -334,14 +348,14 @@ export default {
 > (5) the app should work offline AND in sync accross multiple clients using websockets or similar communication protocol
   (algorithm for making app in sync doesn't have to be perfect or optimised. Proving that it's conceptually possible is sufficient)
 
-This "bonus" part is here to show what can be accomplished when having complete controll over the application.
+This "bonus" part is here to show what can be accomplished by slightly changing a domain logic without modifing any component.
 
 Since in Recycle, all actions are represented as an observable we can use this and make the application where the
 source of truth is not the state (as it's often the case in Redux app), but the action itself - an event.
 
 In short this is the idea behind "Event Sourcing". 
 If you are unfamiliar with this concept,
-here is a good introduction presentation: [Event Sourcing: the good, the bad and the complicated](https://www.youtube.com/watch?v=8NuHNtwjync)
+here is a good introduction video: [Event Sourcing: the good, the bad and the complicated](https://www.youtube.com/watch?v=8NuHNtwjync)
 
 In config file of this project, there is an option called `sync`.
 If you enable it, and start a server using `node server.js` (in project root),
@@ -357,9 +371,11 @@ are synced using [Operational Transformation (OT)](https://en.wikipedia.org/wiki
 ### Advantages
   - Components are independet isolated parts of the app, which can be reused in different enviroments 
     (this includes handling state and side effects)
-  - Ability to separate component presentation (view) and logic (actions, reducers). No inline event handlers.
-  - Components are not controlled "from the outside", "force updating" them every time the state is changed.
-    Recycle component is listening to an observable and updates itself.
+  - By documenting driver inputs to components you can easily create an API for developing components
+    (this API can be public, and there would be no difference between a component and a "plugin" developed by someone "outside" the company)
+  - Ability to separate component presentation (view) and logic (no inline event handlers).
+  - Components are not controlled "from the outside" (by "force updating" them every time the state is changed) - 
+    component is reacting to a observable and updates itself.
   - Ability to "break" the state more easily (no need for root reducer)
   - Ability to use observables for async operations (which, among other things, saves you from heavily using switch/case logic)
   - Ability to create side effects without middlewares
