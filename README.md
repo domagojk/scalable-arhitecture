@@ -110,7 +110,7 @@ This challenge promotes an architecture which is composed of:
 ## Solution in Recycle
 Recycle application is composed of components and drivers:
 - **Components** are independent units of the app doing most of the work
-- **Drivers** are part of the app domain logic which are connecting them together
+- **Drivers** are part of the application domain logic which are connecting components together
 
 List of components:
 - view: `RepoList` **(A)**, `Markdown` **(B)** (managing application visual presentation using React)
