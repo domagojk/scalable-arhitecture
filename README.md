@@ -22,9 +22,8 @@ It's obvious that we need good modular arhitecture which scales well.
 
 Every module should be powerful enough to create any feature but also isolated enough to be easily plugged in the system.
 
-Let's start by first defining what does it mean for an application to be scalable.
-
 ## Scalability Index
+But what does it mean for an application to be scalable?
 Personally, I'm not aware of any clear way for determening application scalability (if there is one, please let me know).
 
 So, I'm now going to define my own. 
