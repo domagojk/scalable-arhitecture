@@ -367,15 +367,13 @@ are synced using [Operational Transformation (OT)](https://en.wikipedia.org/wiki
 ### Advantages
   - Components are independet isolated parts of the app, which can be reused in different enviroments 
     (this includes handling state and side effects)
-  - By documenting driver inputs to components you can easily create an API for developing components
+  - By documenting driver outputs you can easily create an API for developing components
     (this API can be public, and there would be no difference between a component and a "plugin" developed by someone "outside" the company)
-  - Ability to separate component presentation (view) and logic (no inline event handlers).
-  - Components are not controlled "from the outside" (by "force updating" them every time the state is changed) - 
-    component is reacting to a observable and updates itself.
-  - Ability to "break" the state more easily (no need for root reducer)
+  - Ability to separate component presentation and logic (no inline event handlers).
+  - Components are not controlled "from the outside" (by "force updating" them every time the state is changed)
+  - Ability to "break" the state more easily (no need for a root reducer)
   - Ability to use observables for async operations (which, among other things, saves you from heavily using switch/case logic)
   - Ability to create side effects without middlewares
-  - Observables forces you to write more declarative code
   - More? (please comment)
 
 ### Disadvatages
