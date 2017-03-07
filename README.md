@@ -10,7 +10,7 @@ But, the following specification also serves as a challenge.
 
 If you wish to solve the challenge by yourself, feel free to post an issue with your solution featuring the library of your choice.
 
-## Goal of the project
+## The Project Goal
 Imagine you are the lead developer for a web application similar to facebook (currently focused only on frontend).
 
 Hundreds of employees in the company depend on you to make an arhitecture where
