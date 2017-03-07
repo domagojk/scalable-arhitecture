@@ -18,7 +18,7 @@ Hundreds of employees in the company depend on you to make an arhitecture where
 To make it more interesting, it's also required to make a public API which
 would be used for creating plugins.
 
-It's obvious that we need good modular arhitecture which scales well.
+It's obvious that for this we need good modular arhitecture which scales well.
 
 Every module should be powerful enough to create any feature but also isolated enough to be easily plugged in the system.
 
