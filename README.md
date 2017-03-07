@@ -101,7 +101,7 @@ Bonus requirement:
 ## Proposed Arhitecture
 There are, of course, different ways of structuring an application like this.
 
-This challenge promotes the architecture which is composed of:
+This challenge promotes an architecture which is composed of:
  - view logic (components managing application visual presentation)
  - state managment (components managing application state)
  - effects (components managing application side effects)
