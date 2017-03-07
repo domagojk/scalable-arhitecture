@@ -20,10 +20,9 @@ would be used for creating plugins.
 
 It's obvious that we need good modular arhitecture which scales well.
 
-Every module should be powerful enough to create any feature but also isolated enough so that
-you don't need to waste much time on integrating that module in the system.
+Every module should be powerful enough to create any feature but also isolated enough to be easily plugged in the system.
 
-But, in order to do this, we must first define what does it mean for an application to be scalable.
+Let's start by first defining what does it mean for an application to be scalable.
 
 ## Scalability Index
 Personally, I'm not aware of any clear way for determening application scalability (if there is one, please let me know).
