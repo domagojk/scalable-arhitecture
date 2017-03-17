@@ -22,8 +22,8 @@ function RepoList () {
         sources.select('input')
           .on('keyPress')
           .filter(e => e.key === 'Enter')
-          .mapToLatest(sources.state)
-          .map(s => s.newRepoInput)
+          .withLatestFrom(sources.state)
+          .map(([event, state]) => state.newRepoInput)
           .map(sources.actionCreators.addRepo)
       ]
     },

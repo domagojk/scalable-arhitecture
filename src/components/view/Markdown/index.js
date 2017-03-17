@@ -19,7 +19,8 @@ function Markdown () {
       return [
         sources.selectClass('retry-fetch')
           .on('click')
-          .mapToLatest(sources.store$.map(s => s.repoName))
+          .withLatestFrom(sources.store$.map(s => s.repoName))
+          .map(([event, repoName]) => repoName)
           .map(sources.actionCreators.requestReadme)
       ]
     },
