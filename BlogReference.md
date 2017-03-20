@@ -26,8 +26,8 @@ presented as following:
 ![The Grand React](https://cdn-images-1.medium.com/max/1600/1*d08u04TIDN7WbYvL6wmx6g.png)
 
 - Recycle network represents "twitter channels" which guests can subscribe to. These are: store stream, action stream and config (drivers).
-- "Container room" represents React components that had requested access to state stream: **(A)** **(B)**
-- "Redux room" represents components for managing app state: **(C)**, **(D)**
-- "Ajax room" represents components for managing side effects **(E)**
+- "Container room" represents React components that had requested access to state stream: **(A)** - RepoList, **(B)** - Markdown
+- "Redux room" represents components for managing app state: **(C)** - FetchingStatus, **(D)** - Repos
+- "Ajax room" represents components for managing side effects **(E)** - ReadmeFetcher
 
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23548181/86f0e176-0006-11e7-853d-ccc926e8605d.png)
