@@ -9,12 +9,12 @@ I ended up creating an application for displaying README.md markdown files for l
 [Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/).
 
 As explained in detail in its [README](README.md), a project is composed of 5 components:
-(A) component for displaying a list of repositories
-(B) component for rendering fetched markdown
-isolated parts of the app for handling app state:
-(C) component managing fetching status (is README currently fetching and is it in error state)
-(D) component managing repository data (contents of README.md and list of repositories)
-(E) component for making side effects (ajax request to GitHub API)
+- (A) component for displaying a list of repositories
+- (B) component for rendering fetched markdown
+- isolated parts of the app for handling app state:
+- (C) component managing fetching status (is README currently fetching and is it in error state)
+- (D) component managing repository data (contents of README.md and list of repositories)
+- (E) component for making side effects (ajax request to GitHub API)
 
 The main benefit of this approach over classical Redux application is that all components are isolated,
 just as Monsieur Gustave and Mr Ivan wanted :)
