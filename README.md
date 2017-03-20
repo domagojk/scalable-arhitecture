@@ -1,7 +1,7 @@
 # Markdown Fetcher Challenge
 Application for displaying *README.md* markdown files for listed repositories.
 
-[Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/)
+[Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/).
 
 This repository is an example of how [Recycle](https://recycle.js.org) (v2) can be used for building large-scale apps.
 
