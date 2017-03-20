@@ -1,5 +1,5 @@
 # The Grand React
-This is a short explanation of the project made to complement The Grand React blog post.
+This is a short explanation of the project made to complement [The Grand React blog post](https://medium.com/@domagojk/the-grand-react-hotel-219b4d393261).
 
 To showcase a scenario for handling side effects and managing state,
 I had to work with something more complex, so this application is not related to "Picture Gallery" example.
