@@ -25,7 +25,7 @@ presented as following:
 
 ![The Grand React](https://cdn-images-1.medium.com/max/1600/1*d08u04TIDN7WbYvL6wmx6g.png)
 
-- Recycle network is the domain logic, defined mostly using "drivers". This are: store stream, action stream and config which guests can use if they "subscribe" to those "twitter channels"
+- Recycle network represents "twitter channels" which guests can subscribe to. These are: store stream, action stream and config.
 - "Container room" represents React components that had requested access to state stream: **(A)** **(B)**
 - "Redux room" represents components for managing app state: **(C)**, **(D)**
 - "Ajax room" represents components for managing side effects **(E)**
