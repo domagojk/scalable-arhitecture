@@ -9,12 +9,12 @@ I ended up creating an application for displaying README.md markdown files for l
 [Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/).
 
 As explained in detail in its [README](README.md), a project is composed of 5 components:
-- (A) component for displaying a list of repositories
-- (B) component for rendering fetched markdown
+- **(A)** component for displaying a list of repositories
+- **(B)** component for rendering fetched markdown
 - isolated parts of the app for handling app state:
-- (C) component managing fetching status (is README currently fetching and is it in error state)
-- (D) component managing repository data (contents of README.md and list of repositories)
-- (E) component for making side effects (ajax request to GitHub API)
+ - **(C)** component managing fetching status (is README currently fetching and is it in error state)
+ - **(D)** component managing repository data (contents of README.md and list of repositories)
+- **(E)** component for making side effects (ajax request to GitHub API)
 
 The main benefit of this approach over classical Redux application is that all components are isolated,
 just as Monsieur Gustave and Mr Ivan wanted :)
@@ -26,8 +26,8 @@ presented as following:
 ![The Grand React](https://cdn-images-1.medium.com/max/1600/1*d08u04TIDN7WbYvL6wmx6g.png)
 
 - Recycle network is the domain logic, defined mostly using "drivers". This are: store stream, action stream and config which guests can use if they "subscribe" to those "twitter channels"
-- "Container room" represents React components that had requested access to state stream: (A) (B)
-- "Redux room" represents components for managing app state: (C), (D)
-- "Ajax room" represents components for managing side effects (E)
+- "Container room" represents React components that had requested access to state stream: **(A)** **(B)**
+- "Redux room" represents components for managing app state: **(C)**, **(D)**
+- "Ajax room" represents components for managing side effects **(E)**
 
 ![App structure](https://cloud.githubusercontent.com/assets/1868852/23548181/86f0e176-0006-11e7-853d-ccc926e8605d.png)
