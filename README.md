@@ -13,7 +13,7 @@ If you wish to solve the challenge by yourself, feel free to post an issue with 
 Imagine you are the lead developer for a web application similar to Facebook (currently focused only on frontend).
 
 Hundreds of employees in the company depend on you to make an architecture where
-"senior" or "junior" can easily contribute.
+"senior" or "junior" developer can easily contribute.
 To make it more interesting, it's also required to make a public API which
 would be used for creating plugins.
 
