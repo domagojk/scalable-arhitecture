@@ -1,0 +1,3 @@
+export const REQUEST_README = 'REQUEST_README'
+export const README_FETCHED = 'README_FETCHED'
+export const ADD_REPO = 'ADD_REPO'

@@ -26,9 +26,10 @@ const createModule = function (module) {
   return recycleReact.createReactComponent(rootComponent)
 }
 
-// const TodosReact = createModule(Todos)
+const TodosReact = createModule(Todos)
 const MarkdownFetcherReact = createModule(MarkdownFetcher)
 
 ReactDOM.render(<div>
   <MarkdownFetcherReact />
+  <TodosReact />
 </div>, document.getElementById('root'))

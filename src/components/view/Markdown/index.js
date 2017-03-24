@@ -1,70 +1,66 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { sourceTypes } from 'recyclejs'
 
 function Markdown () {
   return {
-    sourceTypes: {
-      store$: sourceTypes.observable.isRequired,
-      actionCreators: sourceTypes.object.isRequired
+    interface: {
+      documentId$: 'observable',
+      documentContent$: 'observable',
+      refreshContent: 'function',
+      requestLoading$: 'observable',
+      requestError$: 'observable'
     },
 
     initialState: {
-      document: 'No document',
-      isFetching: false,
-      error: false
+      document: '',
+      isLoading: false,
+      requestError: false
     },
 
     actions (sources) {
       return [
         sources.selectClass('retry-fetch')
           .on('click')
-          .withLatestFrom(sources.store$.map(s => s.repoName))
-          .map(([event, repoName]) => repoName)
-          .map(sources.actionCreators.requestReadme)
+          .withLatestFrom(sources.documentId$)
+          .map(([event, docId]) => docId)
+          .map(sources.refreshContent)
       ]
     },
 
     reducers (sources) {
       return [
-        sources.store$
-          .map(s => s.isFetching)
-          .distinctUntilChanged()
-          .reducer(function (state, isFetching) {
-            state.isFetching = isFetching
+        sources.requestLoading$
+          .reducer(function (state, isLoading) {
+            state.isLoading = isLoading
             return state
           }),
 
-        sources.store$
-          .map(s => s.readme)
-          .distinctUntilChanged()
+        sources.documentContent$
           .reducer(function (state, document) {
             state.document = document
             return state
           }),
 
-        sources.store$
-          .map(s => s.errorFetching)
-          .distinctUntilChanged()
+        sources.requestError$
           .reducer(function (state, error) {
-            state.error = error
+            state.requestError = error
             return state
           })
       ]
     },
 
     view (props, state) {
-      const markdown = (state.isFetching) ? 'Fetching document...' : state.document
+      const document = (state.isLoading) ? 'Fetching document...' : state.document
 
       return (
         <div>
-          {state.error && !state.isFetching &&
+          {state.requestError && !state.isLoading &&
             <div>
-              <div>Error fetching document: {state.error}</div>
+              <div>Error fetching document: {state.requestError}</div>
               <button className='retry-fetch'>Retry</button>
             </div>
           }
-          <ReactMarkdown source={markdown} />
+          <ReactMarkdown source={document} />
         </div>
       )
     }
