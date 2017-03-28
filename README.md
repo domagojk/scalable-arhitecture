@@ -1,13 +1,5 @@
-# Markdown Fetcher Challenge
-Application for displaying *README.md* markdown files for listed repositories.
-
-[Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/).
-
+# Scalable Arhitecture
 This repository is an example of how [Recycle (v2)](https://github.com/recyclejs/recycle/blob/v2.0/README.md) can be used for building large-scale apps.
-
-But, the following specification also serves as a challenge.
-
-If you wish to solve the challenge by yourself, feel free to post an issue with your solution featuring the library of your choice.
 
 ## The Project Goal
 Imagine you are the lead developer for a web application similar to Facebook (currently focused only on frontend).
@@ -30,8 +22,8 @@ So, I'm now going to propose an equation of my own.
 In short, the application should be created as a set of components,
 and the part of the application connecting them together should be as small as possible.
 
-Note that a term "component" (module) indicates an isolated part of the application.
-It's a broader concept than "React component".
+Note that a term "component" indicates an isolated part of the application
+(it's a broader concept than "React component").
 
 ```
                       c(reusability) * c(independence) * c(testability)
@@ -55,11 +47,6 @@ A good case for testing its dependence is: can a specific component be published
 
 If the answer is yes, a component is probably independent because no files outside of its root directory can be used.
 
-This however, doesn't mean a component should always be defined in a single file.
-If a component is composed of multiple child components, 
-then the entire hierarchy acts as a single npm package.
-Child components, in this case, can be defined in the same directory, or they can also be imported from npm.
-
 ### c(testability) - Component Testability
 How easily can you test individual component?
 If a component is truly independent, 
@@ -74,7 +61,12 @@ This includes: app starting point (`index.js`), config params, constants (`actio
 
 Good scalable architecture keeps this part as small as possible.
 
-## Challenge Specifications
+## Example Project
+
+Application for displaying *README.md* markdown files for listed repositories.
+
+[Demo](https://domagojk.github.io/Markdown-Fetcher-Challenge/).
+
 The application must be separated into five parts:
 - **(A)** component for displaying a list of repositories
 - **(B)** component for rendering fetched markdown

@@ -1,8 +1,14 @@
 {
-  "name": "scalable-arhitecture-challenge",
+  "name": "scalable-arhitecture",
   "version": "0.1.0",
   "homepage": "https://domagojk.github.io/Markdown-Fetcher-Challenge/",
   "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-register": "^6.24.0",
     "eslint": "^3.9.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
@@ -14,11 +20,13 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "bundle-loader": "^0.5.5",
     "http": "0.0.0",
     "react": "^15.4.2",
     "react-codemirror": "^0.3.0",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.4",
+    "react-router-dom": "^4.0.0",
     "recyclejs": "^2.0.0-rc.0",
     "rxjs": "^5.2.0",
     "sharedb": "^1.0.0-beta.7",
@@ -27,6 +35,7 @@
     "ws": "^2.1.0"
   },
   "scripts": {
+    "buildcomponents": "babel src/components -d ./components",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
