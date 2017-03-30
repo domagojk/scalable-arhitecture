@@ -88,9 +88,9 @@ Good scalable architecture keeps this part as small as possible.
 This repository is made of different small projects (similar to TodoMVC),
 each representing an idea which can be used in a large-scale application.
 
-All of them are using *components* which are defined in `src/components`.
+All of them are made as a combination of **components** (defined in `src/components`) .
 
-When components are combined together, they form a - *module*.
+When components are combined together, they form a - **module**.
 
 The last project: "`99-large-scale-project`" is an implementation of a large-scale application (currently in early stage of defining requirements) which main purpuse is to test those ideas.
 
