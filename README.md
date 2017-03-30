@@ -1,4 +1,4 @@
-# RxJS design patterns for large-scale JavaScript apps
+# RxJS Design Patterns for Large-scale JavaScript Apps
 Imagine you are the lead developer for a big company like Facebook.
 
 Hundreds of employees in the company depend on you to make an architecture where
@@ -12,7 +12,7 @@ And yea, there should also be a mobile version of the application as well.
 How would you design an architecture for this kind of project?
 What programming language and libraries would you use and why?
 
-## Technology requirements
+## Technology Requirements
 There are many ways one can solve this problem,
 but in this repository I will test design patterns which can meet the following conditions:
 
@@ -29,7 +29,7 @@ If you prefer OOP and wonder why I made this choice, I think [this article](http
 Since this should be a modular application, we need a way to communicate between these modules.
 For this task, I chose Rx Observable streams.
 
-### Flexible view
+### Flexible View
 For application views, I will mostly use React, but this should not be a requirement.
 If someone wants to create a module using a different technology, he should be able to do it.
 Application view must not determine the project architecture!
