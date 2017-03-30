@@ -40,7 +40,7 @@ In case you don't agree with my choices and solutions, please share your opinion
 If you wish to present a solution of your own, you can also send a PR.
 
 ## Scalability Index
-Before presenting my solution, I what to make clear what I mean by good scalable design.
+Before presenting my solution, I want to make clear what is, in my opinion, a good scalable architecture.
 
 In short, the application should be created as a set of components,
 and the part of the application connecting them together should be as small as possible.
