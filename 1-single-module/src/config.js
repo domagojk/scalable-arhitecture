@@ -58,7 +58,7 @@ export default ({ state$, action$ }) => ({
   view: {
     driver: 'react',
     root: App,
-    containerSources: {
+    adapterSources: {
       state$: state$,
       actionTypes,
       actionCreators

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
-import Markdown from './containers/Markdown'
-import RepoList from './containers/RepoList'
+import Markdown from './adapters/Markdown'
+import RepoList from './adapters/RepoList'
 
 const documentStyle = {
   margin: 10,

@@ -1,9 +1,9 @@
 import Markdown from 'scalable-arhitecture/components/view/Markdown'
 
-function MarkdownContainer () {
+function MarkdownAdapter () {
   return {
-    container: ({ state$, actionCreators }) => ({
-      component: Markdown,
+    adapter: ({ state$, actionCreators }) => ({
+      adapt: Markdown,
       sources: {
         documentId$: state$.map(s => s.activeRepo).distinctUntilChanged(),
         documentContent$: state$.map(s => s.fetchedReadme).distinctUntilChanged(),
@@ -15,4 +15,4 @@ function MarkdownContainer () {
   }
 }
 
-export default MarkdownContainer
+export default MarkdownAdapter
