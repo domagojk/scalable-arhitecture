@@ -92,7 +92,7 @@ All of them are made as a combination of **components** (defined in `src/compone
 
 When components are combined together, they form a - **module**.
 
-The last project: "`99-large-scale-project`" is an implementation of a large-scale application which the main purpose is to test those ideas.
+The last project: "`99-large-scale-project`" is an implementation of a large-scale application with the main purpose of testing those ideas.
 
 ### 1) A single module
 The concept of a component and modules is explained in the first design pattern: [1-single-module](./1-single-module)
