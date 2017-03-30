@@ -88,11 +88,11 @@ Good scalable architecture keeps this part as small as possible.
 This repository is made of different small projects (similar to TodoMVC),
 each representing an idea which can be used in a large-scale application.
 
+All of them are using *components* which are defined in `src/components`.
+
+When components are combined together, they form a - *module*.
+
 The last project: "`99-large-scale-project`" is an implementation of a large-scale application (currently in early stage of defining requirements) which main purpuse is to test those ideas.
 
-Even though multipe solutions are presented, they all have one thing in common: *components*.
-
-### A single module
-Components combined together, form a *module*.
-
-The concept of components and how they are connected together is explained in first design pattern: [1-single-module](./1-single-module)
+### 1) A single module
+The concept of a component and modules is explained in the first design pattern: [1-single-module](./1-single-module)
