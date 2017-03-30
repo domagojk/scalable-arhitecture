@@ -9,15 +9,15 @@ there are also thousands of developers who want to create their extensions using
 
 And yea, there should also be a mobile version of the application as well.
 
-How would you design an arhitecture for this kind of project?
+How would you design an architecture for this kind of project?
 What programming language and libraries would you use and why?
 
-## Technology requirments
+## Technology requirements
 There are many ways one can solve this problem,
-but in this repository I will test design patters which can met the following conditions:
+but in this repository I will test design patterns which can meet the following conditions:
 
 ### JavaScript
-Honestly, the main reason why I want to use JavaScript is because it's my favorite programming language.
+Honestly, the main reason why I want to use JavaScript is because it's my favourite programming language.
 Luckily, it's also one of the most popular languages used for web browsers, backend services and mobile devices, 
 so there should be a way to reuse code across these platforms.
 
@@ -27,19 +27,19 @@ If you prefer OOP and wonder why I made this choice, I think [this article](http
 
 ### Observables
 Since this should be a modular application, we need a way to communicate between these modules.
-For this task I chose Rx Observable streams.
+For this task, I chose Rx Observable streams.
 
 ### Flexible view
-For application views, I will mostly use React but this should not be a requirement.
+For application views, I will mostly use React, but this should not be a requirement.
 If someone wants to create a module using a different technology, he should be able to do it.
-Application view must not determine the project arhitecture!
+Application view must not determine the project architecture!
 
 ## Contributing
 In case you don't agree with my choices and solutions, please share your opinion by opening a new issue.
 
 If you wish to present a solution of your own, you can also send a PR.
 
-## Scalability index
+## Scalability Index
 Before presenting my solution, I what to make clear I mean by good scalable design.
 
 In short, the application should be created as a set of components,
@@ -73,14 +73,14 @@ If the answer is yes, a component is probably independent.
 ### c(testability) - Component Testability
 How easily can you test individual component?
 If a component is truly independent, 
-there should be no difference on wether it's tested outside or inside of the architecture for which it was initially built.
+there should be no difference on whether it's tested outside or inside of the architecture for which it was initially built.
 
 ### sizeOf(domainLogic) - Size of the Domain Logic
 The domain is the world your application lives in.
 It connects all components together and optionally provides them with the domain logic data, 
 so that components could adapt to different environments.
 
-This includes: app starting point (`index.js`), config params, constants etc.
+This includes app starting point (`index.js`), config params, constants, etc.
 
 Good scalable architecture keeps this part as small as possible.
 
@@ -92,7 +92,7 @@ All of them are made as a combination of **components** (defined in `src/compone
 
 When components are combined together, they form a - **module**.
 
-The last project: "`99-large-scale-project`" is an implementation of a large-scale application (currently in early stage of defining requirements) which main purpuse is to test those ideas.
+The last project: "`99-large-scale-project`" is an implementation of a large-scale application which the main purpose is to test those ideas.
 
 ### 1) A single module
 The concept of a component and modules is explained in the first design pattern: [1-single-module](./1-single-module)
