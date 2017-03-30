@@ -1,4 +1,4 @@
-# RxJS design patterns for creating large-scale JavaScript apps
+# RxJS design patterns for large-scale JavaScript apps
 Imagine you are the lead developer for a big company like Facebook.
 
 Hundreds of employees in the company depend on you to make an architecture where
