@@ -1,3 +1,8 @@
+# DEPRECATED
+Most of this examples will not work as it's not updated with latest version.
+
+This repository exists as a place for my personal reference for testing concepts.
+
 # RxJS Design Patterns for Large-scale JavaScript Apps
 Imagine you are the lead developer for a big company like Facebook.
 
